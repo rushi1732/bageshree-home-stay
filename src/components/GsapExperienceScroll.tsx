@@ -1,5 +1,6 @@
 import React, { useRef, useLayoutEffect } from "react"
 import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { Clock } from "lucide-react"
 import { DAY_RHYTHM } from "@/data/homestayData"
 

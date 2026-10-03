@@ -169,9 +169,33 @@ interface ThreeCanvasProps {
   onOpenBooking: () => void
 }
 
+class CanvasErrorBoundary extends React.Component<
+  { children: React.ReactNode; fallback: React.ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: { children: React.ReactNode; fallback: React.ReactNode }) {
+    super(props)
+    this.state = { hasError: false }
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true }
+  }
+
+  componentDidCatch(error: unknown) {
+    console.warn("WebGL Canvas fell back gracefully:", error)
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback
+    }
+    return this.props.children
+  }
+}
+
 export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({ onOpenBooking }) => {
   const [mode, setMode] = useState<'dusk' | 'night' | 'day'>('dusk')
-  const hasError = false
 
   const lightConfigs = {
     day: {
@@ -292,8 +316,24 @@ export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({ onOpenBooking }) => {
             <span>Scroll to Zoom</span>
           </div>
 
-          {/* Fallback or 3D Canvas */}
-          {!hasError ? (
+          {/* 3D Canvas with Graceful Fallback ErrorBoundary */}
+          <CanvasErrorBoundary
+            fallback={
+              <div className="w-full h-full relative flex items-center justify-center p-6 text-center">
+                <img
+                  src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80"
+                  alt="Bageshree Villa View"
+                  className="w-full h-full object-cover rounded-2xl opacity-60 absolute inset-0"
+                />
+                <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/60 p-6 z-10">
+                  <p className="text-xl font-serif text-[#f7f4ee]">Bageshree Heritage Villa Sanctuary</p>
+                  <p className="text-xs text-[#8fa898] mt-1.5 max-w-md">
+                    Hand-chiseled red laterite stone walls, antique teakwood pillars, and private forest verandahs.
+                  </p>
+                </div>
+              </div>
+            }
+          >
             <Suspense
               fallback={
                 <div className="w-full h-full flex items-center justify-center text-sm text-[#8fa898]">
@@ -333,19 +373,7 @@ export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({ onOpenBooking }) => {
                 />
               </Canvas>
             </Suspense>
-          ) : (
-            <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center">
-              <img
-                src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80"
-                alt="Bageshree Villa View"
-                className="w-full h-full object-cover rounded-2xl opacity-60"
-              />
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/60 p-6">
-                <p className="text-lg font-serif text-[#f7f4ee]">Bageshree Villa Sanctuary</p>
-                <p className="text-xs text-[#8fa898] mt-1">WebGL rendering completed in low-power fallback mode.</p>
-              </div>
-            </div>
-          )}
+          </CanvasErrorBoundary>
         </div>
       </div>
     </section>
