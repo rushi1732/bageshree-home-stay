@@ -3,6 +3,7 @@ import { motion } from "framer-motion"
 import { Calendar, Users, Home, Sparkles, ArrowRight, ShieldCheck, Waves, Coffee, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { VILLAS } from "@/data/homestayData"
+import bageshreeHeroImg from "@/assets/bageshree-real.jpg"
 
 interface HeroProps {
   onOpenBooking: (villaId?: string) => void
@@ -18,36 +19,35 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
   }
 
   return (
-    <section className="relative min-h-[92vh] flex items-center justify-center pt-24 pb-16 overflow-hidden">
-      {/* Background Imagery with Depth Layers - Authentic Bageshree Homestay Photo */}
-      <div className="absolute inset-0 -z-20">
+    <section className="relative min-h-[92vh] flex items-center justify-center pt-24 pb-16 overflow-hidden isolate">
+      {/* Background Imagery - Authentic Bageshree Homestay Photo */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <img
-          src="/bageshree-real.jpg"
+          src={bageshreeHeroImg}
           alt="Bageshree Home Stay Property - Authentic Konkan Retreat"
-          className="w-full h-full object-cover object-[center_30%] scale-100 filter brightness-[0.78] contrast-[1.04] transition-all duration-700"
+          className="w-full h-full object-cover object-[center_28%] filter brightness-[0.88] contrast-[1.05]"
         />
-        {/* Subtle atmospheric gradients for crystal clear text readability while keeping the homestay house and palm trees vivid */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0c1510] via-[#0c1510]/45 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0c1510]/80 via-transparent to-transparent" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-black/20 via-black/40 to-[#0c1510]/75" />
+        {/* Soft cinematic overlay for high contrast text readability while keeping the house and palm trees vivid */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0c1510] via-black/35 to-black/50" />
+        <div className="absolute inset-0 bg-[#0c1510]/20" />
       </div>
 
       {/* Property Tag */}
-      <div className="absolute bottom-4 right-4 z-10 hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#101c14]/85 border border-[#2b4232]/80 backdrop-blur-md text-[11px] font-mono text-[#d4a373] shadow-lg">
+      <div className="absolute bottom-4 right-4 z-20 hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#101c14]/90 border border-[#2b4232] backdrop-blur-md text-[11px] font-mono text-[#d4a373] shadow-xl">
         <MapPin className="w-3.5 h-3.5 text-[#d4a373]" />
-        <span>बागेश्री होमस्टे • प्रत्यक्ष परिसर (देवरूख, कोकण)</span>
+        <span>बागेश्री होमस्टे • प्रत्यक्ष वास्तू (देवरूख, कोकण)</span>
       </div>
 
       {/* Floating dust/light subtle effect */}
       <div 
-        className="absolute inset-0 -z-10 pointer-events-none opacity-20"
+        className="absolute inset-0 z-0 pointer-events-none opacity-20"
         style={{
           backgroundImage: `radial-gradient(rgba(212, 163, 115, 0.25) 1px, transparent 1px)`,
           backgroundSize: '40px 40px'
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
           {/* Top Heritage Badge */}
           <motion.div

@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react"
 import { Volume2, VolumeX, Compass, Leaf, Music, Shield } from "lucide-react"
+import bageshreeHeroImg from "@/assets/bageshree-real.jpg"
 
 export const BrandStory: React.FC = () => {
   const [isPlayingAudio, setIsPlayingAudio] = useState(false)
@@ -80,7 +81,7 @@ export const BrandStory: React.FC = () => {
           <div className="lg:col-span-6 relative">
             <div className="relative z-10 rounded-2xl overflow-hidden border border-[#2b4232] shadow-2xl">
               <img
-                src="/bageshree-real.jpg"
+                src={bageshreeHeroImg}
                 alt="Bageshree Home Stay Property - Devrukh, Konkan"
                 className="w-full h-[440px] sm:h-[500px] object-cover filter brightness-95 hover:scale-105 transition-transform duration-700"
               />

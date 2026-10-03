@@ -1,6 +1,7 @@
 import React from "react"
 import { CalendarCheck, Phone, MessageSquare, Sparkles, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import bageshreeHeroImg from "@/assets/bageshree-real.jpg"
 
 interface CtaSectionProps {
   onOpenBooking: () => void
@@ -8,13 +9,13 @@ interface CtaSectionProps {
 
 export const CtaSection: React.FC<CtaSectionProps> = ({ onOpenBooking }) => {
   return (
-    <section className="py-24 bg-[#0a110d] relative overflow-hidden">
+    <section className="py-24 bg-[#0a110d] relative overflow-hidden isolate">
       {/* Background Scenic Image with rich dark overlays */}
-      <div className="absolute inset-0 -z-10">
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <img
-          src="/bageshree-real.jpg"
+          src={bageshreeHeroImg}
           alt="Bageshree Home Stay Property - Devrukh, Konkan"
-          className="w-full h-full object-cover object-[center_30%] filter brightness-[0.38] contrast-[1.05]"
+          className="w-full h-full object-cover object-[center_30%] filter brightness-[0.45] contrast-[1.05]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a110d] via-[#0a110d]/75 to-[#0a110d]/90" />
       </div>
