@@ -65,6 +65,8 @@ export default {
       fontFamily: {
         serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
         sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+        marathi: ['"Mukta"', '"Noto Sans Devanagari"', 'sans-serif'],
+        mono: ['"Space Grotesk"', 'monospace'],
       },
       borderRadius: {
         lg: "var(--radius)",

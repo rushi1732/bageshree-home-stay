@@ -96,7 +96,7 @@ export const VillaShowcase: React.FC<VillaShowcaseProps> = ({ onOpenBooking }) =
 
                 {/* Marathi Subtitle */}
                 <div className="absolute bottom-4 right-4 bg-[#0c1510]/90 border border-[#2b4232] px-3.5 py-1.5 rounded-lg backdrop-blur-md">
-                  <span className="text-xs font-serif text-[#f7f4ee]">
+                  <span className="text-xs font-marathi font-medium text-[#f7f4ee]">
                     {selectedVilla.marathiName}
                   </span>
                 </div>
@@ -191,7 +191,7 @@ export const VillaShowcase: React.FC<VillaShowcaseProps> = ({ onOpenBooking }) =
                     Starting Tariff
                   </span>
                   <div className="flex items-baseline gap-1">
-                    <span className="text-2xl sm:text-3xl font-serif text-[#f7f4ee]">
+                    <span className="text-2xl sm:text-3xl font-sans font-bold text-[#f7f4ee] tabular-nums tracking-tight">
                       ₹{selectedVilla.pricePerNight.toLocaleString('en-IN')}
                     </span>
                     <span className="text-xs text-[#8fa898]">/ night + taxes</span>
@@ -223,10 +223,10 @@ export const VillaShowcase: React.FC<VillaShowcaseProps> = ({ onOpenBooking }) =
               }`}
             >
               <div>
-                <span className="text-[10px] font-mono text-[#d4a373] uppercase">
+                <span className="text-xs font-marathi text-[#d4a373] font-medium block">
                   {villa.marathiName}
                 </span>
-                <h4 className="text-sm font-serif font-medium text-[#f7f4ee] mt-0.5">
+                <h4 className="text-sm font-semibold text-[#f7f4ee] mt-0.5">
                   {villa.name}
                 </h4>
                 <p className="text-[11px] text-[#8fa898] mt-1 line-clamp-1">
@@ -235,7 +235,7 @@ export const VillaShowcase: React.FC<VillaShowcaseProps> = ({ onOpenBooking }) =
               </div>
 
               <div className="mt-3 pt-2 border-t border-[#2b4232]/60 flex items-center justify-between text-xs">
-                <span className="font-semibold text-[#f7f4ee]">
+                <span className="font-sans font-bold text-[#f7f4ee] tabular-nums">
                   ₹{villa.pricePerNight.toLocaleString('en-IN')}/night
                 </span>
                 <span className="text-[#d4a373] font-medium text-[11px]">

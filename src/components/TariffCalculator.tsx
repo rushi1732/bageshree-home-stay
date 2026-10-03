@@ -206,7 +206,7 @@ export const TariffCalculator: React.FC<TariffCalculatorProps> = ({ onOpenBookin
                   </span>
                   <span className="text-[10px] text-[#8fa898]">All taxes included</span>
                 </div>
-                <span className="text-2xl sm:text-3xl font-serif text-[#f7f4ee] font-semibold">
+                <span className="text-2xl sm:text-3xl font-sans font-bold text-[#f7f4ee] tabular-nums tracking-tight">
                   ₹{estimatedTotal.toLocaleString('en-IN')}
                 </span>
               </div>

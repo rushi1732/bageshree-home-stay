@@ -125,7 +125,7 @@ export const GsapExperienceScroll: React.FC = () => {
                     {item.title}
                   </h3>
 
-                  <span className="text-xs font-serif text-[#d4a373] mt-1 block">
+                  <span className="text-xs font-marathi font-medium text-[#d4a373] mt-1 block">
                     {item.marathiTitle}
                   </span>
 

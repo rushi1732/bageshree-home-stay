@@ -97,7 +97,7 @@ export const KonkanCuisine: React.FC = () => {
 
                   {/* Body Content */}
                   <div className="p-6">
-                    <span className="text-[11px] font-mono text-[#d4a373] tracking-wide block">
+                    <span className="text-xs font-marathi text-[#d4a373] font-medium block">
                       {meal.marathiName}
                     </span>
                     <h3 className="text-xl font-serif text-[#f7f4ee] mt-1 group-hover:text-[#d4a373] transition-colors">

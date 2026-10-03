@@ -57,20 +57,20 @@ export const Statistics: React.FC = () => {
                   </span>
                 </div>
 
-                <div className="flex items-baseline gap-1">
-                  <span className="text-3xl sm:text-4xl font-serif text-[#f7f4ee] font-semibold">
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-3xl sm:text-4xl font-sans font-bold text-[#f7f4ee] tracking-tight tabular-nums">
                     {stat.value}
                   </span>
-                  <span className="text-xs font-mono text-[#d4a373]">
+                  <span className="text-xs font-mono text-[#d4a373] font-medium">
                     {stat.unit}
                   </span>
                 </div>
 
-                <h4 className="text-sm font-semibold text-[#f7f4ee] mt-1">
+                <h4 className="text-sm font-semibold text-[#f7f4ee] mt-1.5">
                   {stat.label}
                 </h4>
 
-                <span className="text-[11px] font-serif text-[#d4a373] block mt-0.5">
+                <span className="text-xs font-marathi text-[#d4a373] block mt-0.5 font-medium">
                   {stat.marathi}
                 </span>
 
