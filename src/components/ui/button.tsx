@@ -19,6 +19,9 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         creative: "bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:opacity-95 transition-all duration-300",
+        bageshree: "bg-[#c5705d] text-[#FAF7F2] font-medium shadow-md shadow-[#c5705d]/25 hover:bg-[#b35e4b] hover:shadow-lg hover:shadow-[#c5705d]/35 transition-all duration-300 active:scale-[0.98]",
+        "bageshree-outline": "border border-[#d4a373]/50 text-[#FAF7F2] hover:bg-[#213527]/80 hover:border-[#d4a373] transition-all duration-300 backdrop-blur-sm",
+        "bageshree-brass": "bg-[#d4a373] text-[#0c1510] font-semibold hover:bg-[#e2b686] shadow-md shadow-[#d4a373]/20 transition-all duration-300 active:scale-[0.98]",
       },
       size: {
         default: "h-9 px-4 py-2",

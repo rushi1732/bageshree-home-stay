@@ -6,25 +6,25 @@
 
 @layer base {
   :root {
-    --background: 224 71% 4%;
-    --foreground: 213 31% 91%;
-    --card: 224 71% 6%;
-    --card-foreground: 213 31% 91%;
-    --popover: 224 71% 4%;
-    --popover-foreground: 213 31% 91%;
-    --primary: 210 100% 50%;
-    --primary-foreground: 222 47% 98%;
-    --secondary: 222 47% 11%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 223 47% 11%;
-    --muted-foreground: 215.4 16.3% 56.9%;
-    --accent: 216 34% 17%;
-    --accent-foreground: 210 40% 98%;
+    --background: 147 28% 6%;
+    --foreground: 45 35% 95%;
+    --card: 147 25% 10%;
+    --card-foreground: 45 35% 95%;
+    --popover: 147 28% 6%;
+    --popover-foreground: 45 35% 95%;
+    --primary: 11 51% 57%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 147 20% 16%;
+    --secondary-foreground: 45 25% 90%;
+    --muted: 147 18% 14%;
+    --muted-foreground: 145 12% 65%;
+    --accent: 30 52% 64%;
+    --accent-foreground: 147 28% 8%;
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
-    --border: 216 34% 17%;
-    --input: 216 34% 17%;
-    --ring: 216 34% 17%;
+    --border: 147 20% 18%;
+    --input: 147 20% 18%;
+    --ring: 11 51% 57%;
     --radius: 0.75rem;
   }
 
@@ -34,18 +34,17 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    background-color: #0c1510;
+    color: #f7f4ee;
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    selection-background-color: #3b82f6;
-    selection-color: #ffffff;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
-    letter-spacing: -0.02em;
+  h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    letter-spacing: -0.01em;
   }
 }
 

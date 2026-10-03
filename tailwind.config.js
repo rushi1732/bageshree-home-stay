@@ -20,6 +20,19 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        bageshree: {
+          dark: "#0c1510",
+          forest: "#132219",
+          moss: "#213527",
+          card: "#192b20",
+          border: "#2b4232",
+          terracotta: "#c5705d",
+          "terracotta-dark": "#ab5643",
+          brass: "#d4a373",
+          sand: "#f7f4ee",
+          muted: "#8fa898",
+          amber: "#e6ad5c"
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -48,6 +61,10 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+      },
+      fontFamily: {
+        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
       },
       borderRadius: {
         lg: "var(--radius)",
