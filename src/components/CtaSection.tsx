@@ -12,11 +12,11 @@ export const CtaSection: React.FC<CtaSectionProps> = ({ onOpenBooking }) => {
       {/* Background Scenic Image with rich dark overlays */}
       <div className="absolute inset-0 -z-10">
         <img
-          src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2000&q=80"
-          alt="Konkan Nature Background"
-          className="w-full h-full object-cover filter brightness-[0.25]"
+          src="/bageshree-real.jpg"
+          alt="Bageshree Home Stay Property - Devrukh, Konkan"
+          className="w-full h-full object-cover object-[center_30%] filter brightness-[0.38] contrast-[1.05]"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a110d] via-[#0a110d]/70 to-[#0a110d]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a110d] via-[#0a110d]/75 to-[#0a110d]/90" />
       </div>
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">

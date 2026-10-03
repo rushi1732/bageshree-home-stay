@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { motion } from "framer-motion"
-import { Calendar, Users, Home, Sparkles, ArrowRight, ShieldCheck, Waves, Coffee } from "lucide-react"
+import { Calendar, Users, Home, Sparkles, ArrowRight, ShieldCheck, Waves, Coffee, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { VILLAS } from "@/data/homestayData"
 
@@ -19,16 +19,23 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
 
   return (
     <section className="relative min-h-[92vh] flex items-center justify-center pt-24 pb-16 overflow-hidden">
-      {/* Background Imagery with Depth Layers */}
+      {/* Background Imagery with Depth Layers - Authentic Bageshree Homestay Photo */}
       <div className="absolute inset-0 -z-20">
         <img
           src="/bageshree-real.jpg"
           alt="Bageshree Home Stay Property - Authentic Konkan Retreat"
-          className="w-full h-full object-cover object-[center_35%] scale-100 filter brightness-[0.55] contrast-[1.05]"
+          className="w-full h-full object-cover object-[center_30%] scale-100 filter brightness-[0.78] contrast-[1.04] transition-all duration-700"
         />
-        {/* Subtle warm gradient masks for text readability and cinematic look */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0c1510] via-[#0c1510]/50 to-[#0c1510]/30" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0c1510]/70 via-transparent to-[#0c1510]/70" />
+        {/* Subtle atmospheric gradients for crystal clear text readability while keeping the homestay house and palm trees vivid */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0c1510] via-[#0c1510]/45 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0c1510]/80 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-black/20 via-black/40 to-[#0c1510]/75" />
+      </div>
+
+      {/* Property Tag */}
+      <div className="absolute bottom-4 right-4 z-10 hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#101c14]/85 border border-[#2b4232]/80 backdrop-blur-md text-[11px] font-mono text-[#d4a373] shadow-lg">
+        <MapPin className="w-3.5 h-3.5 text-[#d4a373]" />
+        <span>बागेश्री होमस्टे • प्रत्यक्ष परिसर (देवरूख, कोकण)</span>
       </div>
 
       {/* Floating dust/light subtle effect */}
