@@ -2,6 +2,7 @@ import React from "react"
 import { CalendarCheck, Phone, MessageSquare, Sparkles, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import bageshreeHeroImg from "@/assets/bageshree-real.jpg"
+import { CONTACT_INFO } from "@/data/homestayData"
 
 interface CtaSectionProps {
   onOpenBooking: () => void
@@ -44,33 +45,36 @@ export const CtaSection: React.FC<CtaSectionProps> = ({ onOpenBooking }) => {
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button
             onClick={onOpenBooking}
-            className="w-full sm:w-auto bg-[#c5705d] hover:bg-[#b05a46] text-[#f7f4ee] px-8 py-6 rounded-full text-xs sm:text-sm uppercase tracking-wider font-semibold flex items-center justify-center gap-2 shadow-xl shadow-[#c5705d]/25 transition-all cursor-pointer"
+            className="w-full sm:w-auto bg-[#c5705d] hover:bg-[#b05a46] text-[#f7f4ee] px-8 py-6 rounded-full text-xs sm:text-sm uppercase tracking-wider font-semibold flex items-center justify-center gap-2 shadow-xl shadow-[#c5705d]/25 transition-all cursor-pointer whitespace-nowrap"
           >
             <CalendarCheck className="w-4 h-4" />
             <span>Check Dates & Reserve Villa</span>
           </Button>
 
           <a
-            href="https://wa.me/919822481090?text=Hello%20Bageshree%20Home%20Stay%2C%20I%20would%20like%20to%20inquire%20about%20availability."
+            href={`https://wa.me/${CONTACT_INFO.whatsappNumber}?text=Hello%20Bageshree%20Home%20Stay%2C%20I%20would%20like%20to%20inquire%20about%20availability.`}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto px-8 py-4 rounded-full border border-[#2b4232] bg-[#14231a] hover:bg-[#1a2e22] text-[#f7f4ee] text-xs sm:text-sm uppercase tracking-wider font-semibold flex items-center justify-center gap-2 transition-all hover:border-[#d4a373]"
+            className="w-full sm:w-auto px-8 py-4 rounded-full border border-[#2b4232] bg-[#14231a] hover:bg-[#1a2e22] text-[#f7f4ee] text-xs sm:text-sm uppercase tracking-wider font-semibold flex items-center justify-center gap-2 transition-all hover:border-[#d4a373] whitespace-nowrap"
           >
-            <MessageSquare className="w-4 h-4 text-[#d4a373]" />
+            <MessageSquare className="w-4 h-4 text-emerald-400" />
             <span>WhatsApp Host Directly</span>
           </a>
         </div>
 
         <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-xs text-[#8fa898]">
-          <span className="flex items-center gap-1.5">
+          <span className="flex items-center gap-1.5 whitespace-nowrap">
             <MapPin className="w-3.5 h-3.5 text-[#d4a373]" />
             Devrukh, Sangameshwar • Ratnagiri, Konkan
           </span>
           <span>•</span>
-          <span className="flex items-center gap-1.5">
+          <a
+            href={`tel:+${CONTACT_INFO.rawPhone}`}
+            className="flex items-center gap-1.5 hover:text-[#f7f4ee] transition-colors whitespace-nowrap"
+          >
             <Phone className="w-3.5 h-3.5 text-[#d4a373]" />
-            +91 98224 81090
-          </span>
+            <span className="font-mono">{CONTACT_INFO.primaryPhone}</span>
+          </a>
         </div>
       </div>
     </section>

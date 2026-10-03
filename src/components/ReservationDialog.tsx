@@ -8,7 +8,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
-import { VILLAS } from "@/data/homestayData"
+import { VILLAS, CONTACT_INFO } from "@/data/homestayData"
 
 interface ReservationDialogProps {
   open: boolean
@@ -44,7 +44,7 @@ export const ReservationDialog: React.FC<ReservationDialogProps> = ({
     )
     
     // Open WhatsApp in new tab
-    const waUrl = `https://wa.me/919822481090?text=${message}`
+    const waUrl = `https://wa.me/${CONTACT_INFO.whatsappNumber}?text=${message}`
     setTimeout(() => {
       window.open(waUrl, "_blank")
     }, 1200)
@@ -181,7 +181,7 @@ export const ReservationDialog: React.FC<ReservationDialogProps> = ({
                     <Phone className="w-4 h-4 text-[#d4a373] absolute left-3 pointer-events-none" />
                     <input
                       type="tel"
-                      placeholder="+91 98224 81090"
+                      placeholder="+91 98XXX XXXXX"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       required
@@ -228,7 +228,13 @@ export const ReservationDialog: React.FC<ReservationDialogProps> = ({
             <p className="text-sm text-[#8fa898] max-w-md mx-auto">
               Your request for <span className="text-[#f7f4ee] font-medium">{selectedVilla.name}</span> has been forwarded to our estate manager. WhatsApp will open momentarily with your pre-filled inquiry.
             </p>
-            <div className="pt-4">
+            <p className="text-xs text-[#8fa898] pt-1">
+              Direct Host Desk:{' '}
+              <a href={`tel:+${CONTACT_INFO.rawPhone}`} className="text-[#d4a373] font-mono hover:underline">
+                {CONTACT_INFO.primaryPhone}
+              </a>
+            </p>
+            <div className="pt-3">
               <Button
                 variant="outline"
                 onClick={handleReset}

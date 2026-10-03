@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Calculator, Send, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { VILLAS } from "@/data/homestayData"
+import { VILLAS, CONTACT_INFO } from "@/data/homestayData"
 
 interface TariffCalculatorProps {
   onOpenBookingWithDetails: (villaId: string) => void
@@ -35,7 +35,7 @@ export const TariffCalculator: React.FC<TariffCalculatorProps> = ({ onOpenBookin
     const text = encodeURIComponent(
       `Hello Bageshree Home Stay Team,\n\nI calculated a stay estimate on your website:\n• Villa: ${currentVilla.name}\n• Duration: ${nights} Nights\n• Guests: ${guests} Guests\n• Meal Plan: ${mealLabel}\n• Estimated Total: ₹${estimatedTotal.toLocaleString('en-IN')}\n\nPlease let me know availability for these dates. Thank you!`
     )
-    window.open(`https://wa.me/919822481090?text=${text}`, "_blank")
+    window.open(`https://wa.me/${CONTACT_INFO.whatsappNumber}?text=${text}`, "_blank")
   }
 
   return (

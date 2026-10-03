@@ -1,5 +1,6 @@
 import React, { useState } from "react"
-import { MapPin, Phone, Mail, ArrowUp, Send, CheckCircle, Leaf } from "lucide-react"
+import { MapPin, Phone, Mail, ArrowUp, Send, CheckCircle, Leaf, MessageSquare } from "lucide-react"
+import { CONTACT_INFO } from "@/data/homestayData"
 
 export const Footer: React.FC = () => {
   const [email, setEmail] = useState("")
@@ -58,26 +59,41 @@ export const Footer: React.FC = () => {
           {/* Location & Directions */}
           <div className="lg:col-span-3 space-y-3 text-xs">
             <h4 className="text-xs font-mono uppercase tracking-widest text-[#d4a373] font-semibold">
-              Estate Location
+              Estate Location & Direct Desk
             </h4>
             <div className="flex items-start gap-2.5">
               <MapPin className="w-4 h-4 text-[#d4a373] shrink-0 mt-0.5" />
-              <span>
-                Bageshree Agro-Retreat, Post Kondgaon, Near Devrukh, Sangameshwar, Ratnagiri District, Maharashtra – 415804
+              <span className="text-[#c0cfc6] leading-relaxed">
+                {CONTACT_INFO.address}
               </span>
             </div>
             <div className="flex items-center gap-2.5">
               <Phone className="w-4 h-4 text-[#d4a373] shrink-0" />
-              <a href="tel:+919822481090" className="hover:text-[#f7f4ee] transition-colors">
-                +91 98224 81090
-              </a>
+              <div className="flex items-center gap-2">
+                <a href={`tel:+${CONTACT_INFO.rawPhone}`} className="hover:text-[#f7f4ee] font-mono transition-colors">
+                  {CONTACT_INFO.primaryPhone}
+                </a>
+                <span className="text-[#2b4232]">•</span>
+                <a
+                  href={`https://wa.me/${CONTACT_INFO.whatsappNumber}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-emerald-400 hover:text-emerald-300 font-mono inline-flex items-center gap-1 transition-colors"
+                >
+                  <MessageSquare className="w-3 h-3" />
+                  <span>WhatsApp</span>
+                </a>
+              </div>
             </div>
             <div className="flex items-center gap-2.5">
               <Mail className="w-4 h-4 text-[#d4a373] shrink-0" />
-              <a href="mailto:stay@bageshreehomestay.in" className="hover:text-[#f7f4ee] transition-colors">
-                stay@bageshreehomestay.in
+              <a href={`mailto:${CONTACT_INFO.email}`} className="hover:text-[#f7f4ee] font-mono transition-colors">
+                {CONTACT_INFO.email}
               </a>
             </div>
+            <p className="text-[11px] text-[#8fa898] pt-1">
+              Host Desk Timings: {CONTACT_INFO.bookingTiming}
+            </p>
           </div>
 
           {/* Quick Links */}

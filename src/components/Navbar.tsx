@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
-import { Phone, Menu, X, CalendarCheck, MapPin } from "lucide-react"
+import { Phone, Menu, X, CalendarCheck, MapPin, MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { CONTACT_INFO } from "@/data/homestayData"
 
 interface NavbarProps {
   onOpenBooking: (villaId?: string) => void
@@ -103,29 +104,39 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
         </nav>
 
         {/* Actions */}
-        <div className="flex items-center gap-3">
-          {/* Quick Call pill */}
+        <div className="flex items-center gap-2.5 shrink-0">
+          {/* Quick Call pill for xl screens */}
           <a
-            href="tel:+919822481090"
-            className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#2b4232] bg-[#132219]/80 text-[#8fa898] hover:text-[#f7f4ee] hover:border-[#d4a373] transition-all text-xs font-mono"
+            href={`tel:+${CONTACT_INFO.rawPhone}`}
+            className="hidden xl:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#2b4232] bg-[#132219]/90 text-[#d4a373] hover:text-[#f7f4ee] hover:border-[#d4a373] transition-all text-xs font-mono whitespace-nowrap shrink-0 shadow-sm"
           >
-            <Phone className="w-3.5 h-3.5 text-[#d4a373]" />
-            <span>+91 98224 81090</span>
+            <Phone className="w-3.5 h-3.5 text-[#d4a373] shrink-0" />
+            <span className="whitespace-nowrap font-medium tracking-wide">{CONTACT_INFO.primaryPhone}</span>
+          </a>
+
+          {/* Compact Quick Call icon button for sm to lg screens */}
+          <a
+            href={`tel:+${CONTACT_INFO.rawPhone}`}
+            className="hidden sm:inline-flex xl:hidden items-center justify-center w-8 h-8 rounded-full border border-[#2b4232] bg-[#132219]/90 text-[#d4a373] hover:text-[#f7f4ee] hover:border-[#d4a373] transition-all shrink-0"
+            title={`Call Host: ${CONTACT_INFO.primaryPhone}`}
+            aria-label="Call Host"
+          >
+            <Phone className="w-3.5 h-3.5" />
           </a>
 
           {/* Reserve Stay Button */}
           <Button
             onClick={() => onOpenBooking()}
-            className="bg-[#c5705d] hover:bg-[#b05a46] text-[#f7f4ee] text-xs font-semibold uppercase tracking-wider px-4 sm:px-5 py-2 h-auto rounded-full shadow-md shadow-[#c5705d]/20 transition-all duration-300 flex items-center gap-2 cursor-pointer"
+            className="bg-[#c5705d] hover:bg-[#b05a46] text-[#f7f4ee] text-xs font-semibold uppercase tracking-wider px-4 sm:px-5 py-2 h-auto rounded-full shadow-md shadow-[#c5705d]/20 transition-all duration-300 flex items-center gap-2 cursor-pointer whitespace-nowrap shrink-0"
           >
-            <CalendarCheck className="w-3.5 h-3.5" />
+            <CalendarCheck className="w-3.5 h-3.5 shrink-0" />
             <span>Reserve Stay</span>
           </Button>
 
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-[#f7f4ee] hover:text-[#d4a373] transition-colors focus:outline-none"
+            className="lg:hidden p-2 text-[#f7f4ee] hover:text-[#d4a373] transition-colors focus:outline-none shrink-0"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -154,13 +165,27 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
           </div>
 
           <div className="pt-4 flex flex-col gap-3">
-            <a
-              href="tel:+919822481090"
-              className="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg border border-[#2b4232] bg-[#16271c] text-[#f7f4ee] text-xs font-mono"
-            >
-              <Phone className="w-4 h-4 text-[#d4a373]" />
-              <span>Call Host: +91 98224 81090</span>
-            </a>
+            <div className="grid grid-cols-2 gap-2">
+              <a
+                href={`tel:+${CONTACT_INFO.rawPhone}`}
+                className="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg border border-[#2b4232] bg-[#16271c] text-[#f7f4ee] text-xs font-mono whitespace-nowrap"
+              >
+                <Phone className="w-4 h-4 text-[#d4a373] shrink-0" />
+                <span>Call Host</span>
+              </a>
+              <a
+                href={`https://wa.me/${CONTACT_INFO.whatsappNumber}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg border border-[#2b4232] bg-[#16271c] text-[#f7f4ee] text-xs font-mono whitespace-nowrap"
+              >
+                <MessageSquare className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>WhatsApp</span>
+              </a>
+            </div>
+            <p className="text-[11px] text-center font-mono text-[#8fa898]">
+              {CONTACT_INFO.primaryPhone} ({CONTACT_INFO.bookingTiming})
+            </p>
 
             <Button
               onClick={() => {

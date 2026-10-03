@@ -319,3 +319,16 @@ export const FAQS: FaqItem[] = [
       'Every season holds unique beauty. July to October (Monsoons) brings emerald landscapes, mist, and roaring freshwater streams. November to February offers crisp, chilly star-filled nights and daytime pleasant breezes. March to May brings our legendary sweet organic Alphonso mango harvest and refreshing river dip pools.'
   }
 ]
+
+export const CONTACT_INFO = {
+  primaryPhone: '+91 98224 81090',
+  secondaryPhone: '+91 94220 54123',
+  rawPhone: '919822481090',
+  whatsappNumber: '919822481090',
+  formattedPhone: '+91 98224 81090',
+  email: 'stay@bageshreehomestay.in',
+  address: 'Bageshree Agro-Retreat, Post Kondgaon, Near Devrukh, Sangameshwar, Ratnagiri District, Maharashtra – 415804',
+  hostName: 'Sahasrabuddhe Family',
+  bookingTiming: '8:00 AM – 9:30 PM IST'
+}
+
