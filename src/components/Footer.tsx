@@ -88,7 +88,6 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2">
               <li><a href="#story" className="hover:text-[#f7f4ee] transition-colors">Our Story</a></li>
               <li><a href="#villas" className="hover:text-[#f7f4ee] transition-colors">Villas & Cottages</a></li>
-              <li><a href="#sanctuary-3d" className="hover:text-[#f7f4ee] transition-colors">3D Villa Tour</a></li>
               <li><a href="#rhythm" className="hover:text-[#f7f4ee] transition-colors">Daily Rhythm</a></li>
               <li><a href="#cuisine" className="hover:text-[#f7f4ee] transition-colors">Kokani Cuisine</a></li>
               <li><a href="#calculator" className="hover:text-[#f7f4ee] transition-colors">Tariff Calculator</a></li>

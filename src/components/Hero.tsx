@@ -22,13 +22,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
       {/* Background Imagery with Depth Layers */}
       <div className="absolute inset-0 -z-20">
         <img
-          src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=2000&q=85"
-          alt="Bageshree Homestay Konkan estate landscape"
-          className="w-full h-full object-cover object-center scale-105 filter brightness-[0.42] contrast-[1.08]"
+          src="/bageshree-real.jpg"
+          alt="Bageshree Home Stay Property - Authentic Konkan Retreat"
+          className="w-full h-full object-cover object-[center_35%] scale-100 filter brightness-[0.55] contrast-[1.05]"
         />
-        {/* Subtle warm gradient masks for editorial contrast */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0c1510] via-[#0c1510]/60 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0c1510]/80 via-transparent to-[#0c1510]/70" />
+        {/* Subtle warm gradient masks for text readability and cinematic look */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0c1510] via-[#0c1510]/50 to-[#0c1510]/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0c1510]/70 via-transparent to-[#0c1510]/70" />
       </div>
 
       {/* Floating dust/light subtle effect */}

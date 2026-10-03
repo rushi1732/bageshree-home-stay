@@ -4,7 +4,6 @@ import { Navbar } from "@/components/Navbar"
 import { Hero } from "@/components/Hero"
 import { BrandStory } from "@/components/BrandStory"
 import { VillaShowcase } from "@/components/VillaShowcase"
-import { ThreeCanvas } from "@/components/ThreeCanvas"
 import { GsapExperienceScroll } from "@/components/GsapExperienceScroll"
 import { KonkanCuisine } from "@/components/KonkanCuisine"
 import { AmenitiesGrid } from "@/components/AmenitiesGrid"
@@ -47,10 +46,7 @@ export function App() {
           {/* 2. Brand Introduction & Philosophy (with Web Audio Tanpura generator) */}
           <BrandStory />
 
-          {/* 3. Interactive 3D Villa Sanctuary Section (React Three Fiber + Drei) */}
-          <ThreeCanvas onOpenBooking={() => handleOpenBooking()} />
-
-          {/* 4. Interactive Villas & Suites Showcase */}
+          {/* 3. Interactive Villas & Suites Showcase */}
           <VillaShowcase onOpenBooking={handleOpenBooking} />
 
           {/* 5. GSAP Scroll Animation: A Day in Rhythm at Bageshree */}

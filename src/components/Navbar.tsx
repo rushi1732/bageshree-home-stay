@@ -21,7 +21,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
   const navLinks = [
     { name: "The Estate", href: "#story" },
     { name: "Villas & Suites", href: "#villas" },
-    { name: "3D Retreat", href: "#sanctuary-3d" },
     { name: "Daily Rhythm", href: "#rhythm" },
     { name: "Konkani Feast", href: "#cuisine" },
     { name: "Tariff Calculator", href: "#calculator" },

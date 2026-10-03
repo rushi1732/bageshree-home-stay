@@ -80,8 +80,8 @@ export const BrandStory: React.FC = () => {
           <div className="lg:col-span-6 relative">
             <div className="relative z-10 rounded-2xl overflow-hidden border border-[#2b4232] shadow-2xl">
               <img
-                src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80"
-                alt="Bageshree Ancestral Courtyard"
+                src="/bageshree-real.jpg"
+                alt="Bageshree Home Stay Property - Devrukh, Konkan"
                 className="w-full h-[440px] sm:h-[500px] object-cover filter brightness-95 hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0e1913] via-transparent to-transparent opacity-80" />
