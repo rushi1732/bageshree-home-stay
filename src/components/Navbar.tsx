@@ -7,7 +7,7 @@ import {
   MessageCircle, 
   Award, 
   Calendar, 
-  Compass 
+  Compass
 } from 'lucide-react';
 import { PROPERTY_INFO } from '../data/homestayData';
 import { SoundscapeToggle } from './SoundscapeToggle';
@@ -18,13 +18,13 @@ interface NavbarProps {
   activePage?: string;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onBookClick, onPageSelect, activePage = 'home' }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onBookClick, onPageSelect }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 40) {
+      if (window.scrollY > 25) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -34,15 +34,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick, onPageSelect, activ
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Sleek, well-proportioned navigation items that never wrap or crowd
   const navLinks = [
     { id: 'home', label: 'Home', href: '#home' },
     { id: 'about', label: 'About', href: '#about' },
-    { id: 'rooms', label: 'Rooms & Tariff', href: '#rooms' },
-    { id: 'dining', label: 'Konkan Dining', href: '#dining' },
+    { id: 'rooms', label: 'Rooms & Rates', href: '#rooms' },
+    { id: 'dining', label: 'Dining', href: '#dining' },
     { id: 'amenities', label: 'Amenities', href: '#amenities' },
-    { id: 'calculator', label: 'Calculator', href: '#calculator' },
     { id: 'gallery', label: 'Gallery', href: '#gallery' },
-    { id: 'attractions', label: 'Explore Guhagar', href: '#attractions' },
+    { id: 'attractions', label: 'Explore', href: '#attractions' },
     { id: 'contact', label: 'Contact', href: '#contact' },
   ];
 
@@ -58,87 +58,90 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick, onPageSelect, activ
   };
 
   return (
-    <>
-      {/* Top Notification Bar */}
-      <header className="w-full bg-[#0d2319] text-[#e3ece6] text-xs py-2 px-4 border-b border-[#1b4332]/50 relative z-50">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 bg-[#1b4332] text-[#d4af37] px-2.5 py-0.5 rounded-full font-medium tracking-wide">
-              <Award className="w-3.5 h-3.5" />
+    <header className="w-full relative z-50">
+      {/* Top Essential Information Strip */}
+      <div className="w-full bg-[#0a1d13] text-[#e3ece6] text-xs py-2 px-4 sm:px-6 lg:px-8 border-b border-[#1b4332]/60">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+          
+          {/* Left: MTDC Certification */}
+          <div className="flex items-center gap-2.5">
+            <span className="inline-flex items-center gap-1.5 bg-[#1b4332] text-[#e5c178] px-2.5 py-0.5 rounded-full font-semibold tracking-wide text-[11px] border border-[#d4af37]/30">
+              <Award className="w-3.5 h-3.5 text-[#d4af37]" />
               <span className="font-sans tabular-nums">MTDC Approved (R760)</span>
             </span>
-            <span className="hidden sm:inline text-[#a9c2b4]">
+            <span className="hidden md:inline text-[#a9c2b4] text-xs font-normal">
               Authentic Konkan Nature Homestay • Guhagar, Ratnagiri
             </span>
           </div>
 
-          <div className="flex items-center gap-3 text-xs">
-            {/* Ambient Nature Soundscape Player Toggle */}
+          {/* Right: Soundscape & Direct Contact */}
+          <div className="flex items-center gap-3 text-xs shrink-0">
             <SoundscapeToggle />
 
-            <span className="text-[#1b4332]">|</span>
+            <span className="text-[#1b4332] hidden sm:inline">|</span>
 
             <a 
               href={`tel:${PROPERTY_INFO.phoneRaw}`} 
-              className="flex items-center gap-1.5 hover:text-[#d4af37] transition-colors"
+              className="flex items-center gap-1.5 text-white hover:text-[#d4af37] transition-colors font-medium"
               aria-label="Direct Phone Call"
             >
               <Phone className="w-3 h-3 text-[#d4af37]" />
-              <span className="font-sans font-bold tabular-nums">{PROPERTY_INFO.phones[0]}</span>
+              <span className="font-sans font-bold tabular-nums text-xs">{PROPERTY_INFO.phones[0]}</span>
             </a>
           </div>
+
         </div>
-      </header>
+      </div>
 
       {/* Main Sticky Navbar */}
       <nav 
-        className={`sticky top-0 z-40 transition-all duration-300 w-full ${
+        className={`w-full transition-all duration-300 ${
           isScrolled 
-            ? 'bg-[#fbf9f5]/95 backdrop-blur-md shadow-md py-3 border-b border-[#e8dfcf]' 
-            : 'bg-[#fbf9f5] py-4'
+            ? 'bg-[#fbf9f5]/95 backdrop-blur-md shadow-md py-3 border-b border-[#e5dccf]' 
+            : 'bg-[#fbf9f5] py-4 border-b border-[#ece4d6]'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
           
-          {/* Logo */}
-          <a href="#home" className="flex items-center gap-3 group">
-            <div className="w-11 h-11 rounded-full bg-[#1b4332] flex items-center justify-center text-[#d4af37] shadow-inner group-hover:scale-105 transition-transform duration-300 border border-[#2d6a4f]">
-              <Leaf className="w-6 h-6 stroke-[1.8]" />
+          {/* Brand Logo - Fixed size, never squeezed */}
+          <a 
+            href="#home" 
+            className="flex items-center gap-3 shrink-0 group select-none"
+            aria-label="Bageshree Home Stay Homepage"
+          >
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#1b4332] flex items-center justify-center text-[#d4af37] shadow-inner group-hover:scale-105 transition-transform duration-300 border border-[#2d6a4f] shrink-0">
+              <Leaf className="w-5 h-5 sm:w-6 sm:h-6 stroke-[1.8]" />
             </div>
-            <div>
-              <span className="block font-serif text-xl sm:text-2xl font-bold tracking-tight text-[#173829] leading-tight group-hover:text-[#1b4332] transition-colors">
+            <div className="flex flex-col">
+              <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-[#143224] leading-tight group-hover:text-[#1b4332] transition-colors">
                 Bageshree
               </span>
-              <span className="block text-[10px] uppercase tracking-[0.24em] text-[#856d49] font-semibold">
+              <span className="text-[10px] tracking-[0.22em] text-[#856d49] font-semibold uppercase whitespace-nowrap">
                 Home Stay • Guhagar
               </span>
             </div>
           </a>
 
-          {/* Desktop Navigation Links */}
-          <div className="hidden xl:flex items-center gap-5">
+          {/* Desktop Navigation Links - Centered, non-wrapping, clean typography */}
+          <div className="hidden lg:flex items-center gap-5 xl:gap-7 shrink-0">
             {navLinks.map((link) => (
               <button
                 key={link.id}
                 onClick={() => handleLinkClick(link.id, link.href)}
-                className={`text-xs font-bold uppercase tracking-wider transition-colors relative py-1 ${
-                  activePage === link.id
-                    ? 'text-[#1b4332] after:w-full font-extrabold'
-                    : 'text-[#35463b] hover:text-[#1b4332] after:w-0'
-                } after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-[#1b4332] hover:after:w-full after:transition-all after:duration-300`}
+                className="text-[13px] font-semibold text-[#2d3b32] hover:text-[#1b4332] transition-colors whitespace-nowrap relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#1b4332] hover:after:w-full after:transition-all after:duration-200"
               >
                 {link.label}
               </button>
             ))}
           </div>
 
-          {/* Action CTAs */}
-          <div className="hidden sm:flex items-center gap-3">
+          {/* Right Action CTAs - Fixed and crisp */}
+          <div className="hidden sm:flex items-center gap-2.5 shrink-0">
             <a
               href={`https://wa.me/${PROPERTY_INFO.whatsappNumber}?text=Hello%20Bageshree%20Home%20Stay,%20I%20am%20interested%20in%20reserving%20a%20stay.`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold text-[#173829] bg-[#e8f1ec] hover:bg-[#d5e7dd] transition-all border border-[#b8d6c7]"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-[#173829] bg-[#e8f1ec] hover:bg-[#d5e7dd] transition-all border border-[#b8d6c7] whitespace-nowrap"
             >
               <MessageCircle className="w-3.5 h-3.5 text-[#1b4332]" />
               <span>WhatsApp</span>
@@ -146,27 +149,28 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick, onPageSelect, activ
 
             <button
               onClick={onBookClick}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-bold text-white bg-[#1b4332] hover:bg-[#133225] transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5"
+              className="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 rounded-xl text-xs uppercase tracking-wider font-bold text-white bg-[#1b4332] hover:bg-[#133225] transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 whitespace-nowrap"
             >
               <Calendar className="w-3.5 h-3.5 text-[#d4af37]" />
               <span>Book Your Stay</span>
             </button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Toggle Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="xl:hidden p-2 rounded-lg text-[#173829] hover:bg-[#ede5d8] transition-colors"
+            className="lg:hidden p-2 rounded-xl text-[#173829] hover:bg-[#ede5d8] transition-colors shrink-0"
             aria-label="Toggle Navigation Menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
+
         </div>
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="xl:hidden bg-[#fbf9f5] border-b border-[#e5dccf] px-6 py-6 shadow-xl animate-in slide-in-from-top-4 duration-300">
-            <div className="flex flex-col gap-3">
+          <div className="lg:hidden bg-[#fbf9f5] border-b border-[#e5dccf] px-6 py-6 shadow-xl animate-in slide-in-from-top-4 duration-300">
+            <div className="flex flex-col gap-2.5">
               {navLinks.map((link) => (
                 <button
                   key={link.id}
@@ -213,6 +217,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick, onPageSelect, activ
           </div>
         )}
       </nav>
-    </>
+    </header>
   );
 };
