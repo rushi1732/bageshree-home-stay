@@ -11,6 +11,7 @@ import {
   Award
 } from 'lucide-react';
 import { PROPERTY_INFO, ROOMS } from '../data/homestayData';
+import { PriceTag } from './PriceTag';
 
 interface BookingSectionProps {
   initialValues?: {
@@ -66,7 +67,7 @@ export const BookingSection: React.FC<BookingSectionProps> = ({ initialValues })
 *Nights:* ${nights}
 *Number of Guests:* ${guests}
 *Food Preference:* ${mealPreference}
-*Estimated Tariff:* ₹${estimatedTotal} (${nights} night${nights > 1 ? 's' : ''})
+*Estimated Tariff:* ₹${estimatedTotal.toLocaleString('en-IN')} (${nights} night${nights > 1 ? 's' : ''})
 *Notes:* ${specialNotes || 'None'}
 ---------------------------------------
 Kindly confirm room availability and payment details.`;
@@ -144,7 +145,7 @@ Kindly confirm room availability and payment details.`;
                     placeholder="e.g. 98200 XXXXX"
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-[#d6c7b0] bg-white text-sm text-[#222] focus:outline-none focus:ring-2 focus:ring-[#1b4332]"
+                    className="w-full px-4 py-3 rounded-xl border border-[#d6c7b0] bg-white text-sm font-sans tabular-nums text-[#222] focus:outline-none focus:ring-2 focus:ring-[#1b4332]"
                   />
                 </div>
               </div>
@@ -161,7 +162,7 @@ Kindly confirm room availability and payment details.`;
                     required
                     value={checkIn}
                     onChange={(e) => setCheckIn(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-[#d6c7b0] bg-white text-sm text-[#222] focus:outline-none focus:ring-2 focus:ring-[#1b4332]"
+                    className="w-full px-4 py-3 rounded-xl border border-[#d6c7b0] bg-white text-sm font-sans tabular-nums text-[#222] focus:outline-none focus:ring-2 focus:ring-[#1b4332]"
                   />
                 </div>
 
@@ -175,7 +176,7 @@ Kindly confirm room availability and payment details.`;
                     required
                     value={checkOut}
                     onChange={(e) => setCheckOut(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-[#d6c7b0] bg-white text-sm text-[#222] focus:outline-none focus:ring-2 focus:ring-[#1b4332]"
+                    className="w-full px-4 py-3 rounded-xl border border-[#d6c7b0] bg-white text-sm font-sans tabular-nums text-[#222] focus:outline-none focus:ring-2 focus:ring-[#1b4332]"
                   />
                 </div>
               </div>
@@ -194,7 +195,7 @@ Kindly confirm room availability and payment details.`;
                   >
                     {ROOMS.map((r) => (
                       <option key={r.id} value={r.id}>
-                        {r.name} (₹{r.pricePerNight}/night)
+                        {r.name} (₹{r.pricePerNight.toLocaleString('en-IN')}/night)
                       </option>
                     ))}
                   </select>
@@ -303,14 +304,11 @@ Kindly confirm room availability and payment details.`;
               <div className="p-4 rounded-2xl bg-white border border-[#decbb4] flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <span className="text-xs text-[#718277] block">Estimated Base Tariff</span>
-                  <div className="flex items-baseline gap-1.5">
-                    <span className="font-serif text-2xl font-bold text-[#143224]">
-                      ₹{estimatedTotal.toLocaleString('en-IN')}
-                    </span>
-                    <span className="text-xs text-[#526359]">
-                      ({nights} night{nights > 1 ? 's' : ''} for {selectedRoom.name})
-                    </span>
-                  </div>
+                  <PriceTag 
+                    amount={estimatedTotal} 
+                    size="md" 
+                    period={`(${nights} night${nights > 1 ? 's' : ''} for ${selectedRoom.name})`} 
+                  />
                 </div>
 
                 <div className="text-right text-[11px] text-[#1b4332] font-semibold bg-[#1b4332]/10 px-3 py-1.5 rounded-xl">
@@ -369,7 +367,7 @@ Kindly confirm room availability and payment details.`;
                 >
                   <div className="flex items-center gap-3">
                     <Phone className="w-4 h-4 text-[#d4af37]" />
-                    <span className="font-mono text-sm font-semibold">{PROPERTY_INFO.phones[0]}</span>
+                    <span className="font-sans text-sm font-semibold tabular-nums">{PROPERTY_INFO.phones[0]}</span>
                   </div>
                   <span className="text-xs text-[#d4af37] group-hover:translate-x-0.5 transition-transform">
                     Call Now
@@ -382,7 +380,7 @@ Kindly confirm room availability and payment details.`;
                 >
                   <div className="flex items-center gap-3">
                     <Phone className="w-4 h-4 text-[#d4af37]" />
-                    <span className="font-mono text-sm font-semibold">{PROPERTY_INFO.phones[1]}</span>
+                    <span className="font-sans text-sm font-semibold tabular-nums">{PROPERTY_INFO.phones[1]}</span>
                   </div>
                   <span className="text-xs text-[#d4af37] group-hover:translate-x-0.5 transition-transform">
                     Call Now

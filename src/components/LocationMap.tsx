@@ -102,8 +102,8 @@ export const LocationMap: React.FC = () => {
                   <div className="p-2 rounded-lg bg-[#1b4332]/10 text-[#1b4332]">
                     <Car className="w-4 h-4" />
                   </div>
-                  <h4 className="font-bold text-sm text-[#143224]">
-                    From Mumbai (Approx. 280 km)
+                  <h4 className="font-bold text-sm text-[#143224] font-sans">
+                    From Mumbai (Approx. <span className="tabular-nums">280 km</span>)
                   </h4>
                 </div>
                 <p className="text-xs text-[#526359] leading-relaxed">
@@ -118,8 +118,8 @@ export const LocationMap: React.FC = () => {
                   <div className="p-2 rounded-lg bg-[#1b4332]/10 text-[#1b4332]">
                     <Car className="w-4 h-4" />
                   </div>
-                  <h4 className="font-bold text-sm text-[#143224]">
-                    From Pune (Approx. 240 km)
+                  <h4 className="font-bold text-sm text-[#143224] font-sans">
+                    From Pune (Approx. <span className="tabular-nums">240 km</span>)
                   </h4>
                 </div>
                 <p className="text-xs text-[#526359] leading-relaxed">
@@ -134,8 +134,8 @@ export const LocationMap: React.FC = () => {
                   <div className="p-2 rounded-lg bg-[#1b4332]/10 text-[#1b4332]">
                     <Train className="w-4 h-4" />
                   </div>
-                  <h4 className="font-bold text-sm text-[#143224]">
-                    Nearest Railway Station: Chiplun (42 km)
+                  <h4 className="font-bold text-sm text-[#143224] font-sans">
+                    Nearest Railway Station: Chiplun (<span className="tabular-nums">42 km</span>)
                   </h4>
                 </div>
                 <p className="text-xs text-[#526359] leading-relaxed">

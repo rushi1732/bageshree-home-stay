@@ -24,7 +24,9 @@ export const Reviews: React.FC = () => {
                 <Star key={i} className="w-4 h-4 fill-[#d4af37]" />
               ))}
             </div>
-            <span className="font-bold text-[#143224]">{PROPERTY_INFO.rating} / 5.0</span>
+            <span className="font-sans font-bold text-[#143224] tabular-nums">
+              {PROPERTY_INFO.rating} / 5.0
+            </span>
             <span>• Based on authentic guest reviews</span>
           </div>
         </div>
@@ -76,7 +78,9 @@ export const Reviews: React.FC = () => {
         <div className="mt-14 text-center">
           <div className="inline-flex flex-wrap items-center justify-center gap-3 px-6 py-3 rounded-2xl bg-white border border-[#dfd2be] shadow-sm text-xs text-[#44534a]">
             <Award className="w-4 h-4 text-[#d4af37]" />
-            <span className="font-bold text-[#143224]">MTDC Certified Homestay (Reg. No. R760)</span>
+            <span className="font-sans font-bold text-[#143224] tabular-nums">
+              MTDC Certified Homestay (Reg. No. R760)
+            </span>
             <span className="text-[#a0b0a6]">•</span>
             <span>Inspected for safety, clean drinking water, and authentic Konkan hospitality</span>
           </div>

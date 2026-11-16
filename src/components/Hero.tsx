@@ -11,16 +11,18 @@ import {
   Search, 
   MapPin, 
   Award,
-  Sparkles
+  Sparkles,
+  UtensilsCrossed
 } from 'lucide-react';
 import { HERO_SLIDES, PROPERTY_INFO } from '../data/homestayData';
 
 interface HeroProps {
   onExploreRooms: () => void;
+  onExploreDining?: () => void;
   onBookNow: (dates?: { checkIn: string; checkOut: string; guests: string; roomType: string }) => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onExploreRooms, onBookNow }) => {
+export const Hero: React.FC<HeroProps> = ({ onExploreRooms, onExploreDining, onBookNow }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -54,7 +56,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreRooms, onBookNow }) => {
   return (
     <section 
       id="home" 
-      className="relative min-h-[90vh] lg:min-h-screen flex flex-col justify-between overflow-hidden"
+      className="relative min-h-[92vh] lg:min-h-screen flex flex-col justify-between overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -73,7 +75,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreRooms, onBookNow }) => {
             loading={idx === 0 ? 'eager' : 'lazy'}
           />
           {/* Multi-layered cinematic gradient for legibility & warmth */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#07160e]/90 via-[#0a1e14]/70 to-[#0e2a1c]/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#07160e]/92 via-[#0a1e14]/75 to-[#0e2a1c]/65" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#091b12] via-transparent to-[#07160e]/40" />
         </div>
       ))}
@@ -82,32 +84,32 @@ export const Hero: React.FC<HeroProps> = ({ onExploreRooms, onBookNow }) => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-24 lg:pt-28 pb-12 flex-1 flex flex-col justify-center">
         
         {/* Top Badges */}
-        <div className="flex flex-wrap items-center gap-3 mb-6 animate-fade-in">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#1b4332]/85 text-[#e5c178] border border-[#d4af37]/35 text-xs font-semibold backdrop-blur-md">
+        <div className="flex flex-wrap items-center gap-3 mb-6">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1b4332]/90 text-[#e5c178] border border-[#d4af37]/35 text-xs font-semibold backdrop-blur-md">
             <Award className="w-3.5 h-3.5 text-[#d4af37]" />
-            <span>MTDC Approved Homestay</span>
+            <span className="font-sans tabular-nums">MTDC Approved (R760)</span>
           </div>
 
-          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#0d2319]/80 text-[#f4efe6] border border-white/10 text-xs backdrop-blur-md">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#0d2319]/80 text-[#f4efe6] border border-white/10 text-xs backdrop-blur-md">
             <div className="flex text-[#d4af37]">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="w-3.5 h-3.5 fill-[#d4af37]" />
               ))}
             </div>
-            <span className="font-semibold text-white">4.9 / 5.0</span>
-            <span className="text-[#a8c2b5]">(140+ Happy Families)</span>
+            <span className="font-sans font-bold text-white tabular-nums">4.9 / 5.0</span>
+            <span className="text-[#a8c2b5] font-sans tabular-nums">(140+ Happy Families)</span>
           </div>
 
-          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#0d2319]/80 text-[#d0e4d9] border border-white/10 text-xs backdrop-blur-md hidden sm:inline-flex">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#0d2319]/80 text-[#d0e4d9] border border-white/10 text-xs backdrop-blur-md hidden sm:inline-flex">
             <MapPin className="w-3.5 h-3.5 text-[#e5c178]" />
-            <span>Kaundhar Kalsur, Guhagar, Ratnagiri</span>
+            <span>Kaundhar Kalsur, Guhagar</span>
           </div>
         </div>
 
         {/* Main Headline */}
         <div className="max-w-4xl">
           <span className="text-xs uppercase tracking-[0.25em] text-[#d4af37] font-semibold block mb-2">
-            Welcome to Bageshree Home Stay
+            Welcome to Bageshree Home Stay • बागेमधे शांतता व सुख
           </span>
           <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.15] mb-5">
             Experience Authentic Konkan Hospitality{' '}
@@ -125,20 +127,30 @@ export const Hero: React.FC<HeroProps> = ({ onExploreRooms, onBookNow }) => {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-10">
             <button
               onClick={onExploreRooms}
-              className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#d4af37] hover:bg-[#c49f28] text-[#0d2319] font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#d4af37] hover:bg-[#c49f28] text-[#0d2319] font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
             >
               <BedDouble className="w-4 h-4 text-[#0d2319]" />
-              <span>Explore Rooms</span>
+              <span>Explore Rooms & Tariff</span>
             </button>
 
+            {onExploreDining && (
+              <button
+                onClick={onExploreDining}
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#1b4332]/90 hover:bg-[#1b4332] text-white font-bold text-xs uppercase tracking-wider transition-all duration-300 border border-white/20 hover:-translate-y-0.5"
+              >
+                <UtensilsCrossed className="w-4 h-4 text-[#d4af37]" />
+                <span>Konkan Food Menu</span>
+              </button>
+            )}
+
             <a
-              href={`https://wa.me/${PROPERTY_INFO.whatsappNumber}?text=Hello%20Bageshree%20Home%20Stay,%20I%20would%20like%20to%20inquire%20about%20booking%20a%20room.`}
+              href={`https://wa.me/${PROPERTY_INFO.whatsappNumber}?text=Hello%20Bageshree%20Home%20Stay,%20I%20would%20like%20to%20inquire%20about%20booking%20a%20stay.`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20b858] text-white font-bold text-sm transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20b858] text-white font-bold text-xs transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
             >
               <MessageCircle className="w-4 h-4 fill-white text-[#25D366]" />
-              <span>Direct WhatsApp Booking</span>
+              <span>WhatsApp Booking</span>
             </a>
           </div>
 
@@ -150,15 +162,15 @@ export const Hero: React.FC<HeroProps> = ({ onExploreRooms, onBookNow }) => {
             </div>
             <div className="flex items-center gap-2 text-white/90 text-xs">
               <Sparkles className="w-4 h-4 text-[#d4af37] shrink-0" />
-              <span>Inverter Power Backup</span>
+              <span className="font-sans tabular-nums">100% Inverter Backup</span>
             </div>
             <div className="flex items-center gap-2 text-white/90 text-xs">
               <ShieldCheck className="w-4 h-4 text-[#d4af37] shrink-0" />
-              <span>Home-Style Food</span>
+              <span>Authentic Home Food</span>
             </div>
             <div className="flex items-center gap-2 text-white/90 text-xs">
               <Sparkles className="w-4 h-4 text-[#d4af37] shrink-0" />
-              <span>Compound Parking</span>
+              <span>Gated Compound Parking</span>
             </div>
           </div>
         </div>
@@ -181,7 +193,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreRooms, onBookNow }) => {
               type="date"
               value={checkIn}
               onChange={(e) => setCheckIn(e.target.value)}
-              className="w-full px-3 py-2.5 rounded-lg border border-[#d6c7b0] bg-white text-xs text-[#222] focus:outline-none focus:ring-2 focus:ring-[#1b4332]"
+              className="w-full px-3 py-2.5 rounded-lg border border-[#d6c7b0] bg-white text-xs font-sans tabular-nums text-[#222] focus:outline-none focus:ring-2 focus:ring-[#1b4332]"
             />
           </div>
 
@@ -195,7 +207,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreRooms, onBookNow }) => {
               type="date"
               value={checkOut}
               onChange={(e) => setCheckOut(e.target.value)}
-              className="w-full px-3 py-2.5 rounded-lg border border-[#d6c7b0] bg-white text-xs text-[#222] focus:outline-none focus:ring-2 focus:ring-[#1b4332]"
+              className="w-full px-3 py-2.5 rounded-lg border border-[#d6c7b0] bg-white text-xs font-sans tabular-nums text-[#222] focus:outline-none focus:ring-2 focus:ring-[#1b4332]"
             />
           </div>
 
@@ -208,7 +220,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreRooms, onBookNow }) => {
             <select
               value={guests}
               onChange={(e) => setGuests(e.target.value)}
-              className="w-full px-3 py-2.5 rounded-lg border border-[#d6c7b0] bg-white text-xs text-[#222] focus:outline-none focus:ring-2 focus:ring-[#1b4332]"
+              className="w-full px-3 py-2.5 rounded-lg border border-[#d6c7b0] bg-white text-xs font-semibold text-[#222] focus:outline-none focus:ring-2 focus:ring-[#1b4332]"
             >
               <option value="1">1 Adult (Solo)</option>
               <option value="2">2 Adults (Couple)</option>
@@ -227,11 +239,11 @@ export const Hero: React.FC<HeroProps> = ({ onExploreRooms, onBookNow }) => {
             <select
               value={roomType}
               onChange={(e) => setRoomType(e.target.value)}
-              className="w-full px-3 py-2.5 rounded-lg border border-[#d6c7b0] bg-white text-xs text-[#222] focus:outline-none focus:ring-2 focus:ring-[#1b4332]"
+              className="w-full px-3 py-2.5 rounded-lg border border-[#d6c7b0] bg-white text-xs font-semibold text-[#222] focus:outline-none focus:ring-2 focus:ring-[#1b4332]"
             >
-              <option value="deluxe-ac-room">Deluxe AC Garden Room</option>
-              <option value="family-ac-suite">Executive Family AC Suite</option>
-              <option value="comfort-nature-room">Comfort Nature Breeze (Non-AC)</option>
+              <option value="deluxe-ac-room">Deluxe AC Garden Room (₹2,200)</option>
+              <option value="family-ac-suite">Executive Family AC Suite (₹3,500)</option>
+              <option value="comfort-nature-room">Comfort Nature Breeze Room (₹1,600)</option>
             </select>
           </div>
 

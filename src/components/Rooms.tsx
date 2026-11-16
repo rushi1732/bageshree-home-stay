@@ -15,6 +15,7 @@ import {
   Eye
 } from 'lucide-react';
 import { ROOMS, type Room, PROPERTY_INFO } from '../data/homestayData';
+import { PriceTag } from './PriceTag';
 
 interface RoomsProps {
   onSelectRoomForBooking: (roomId: string) => void;
@@ -58,7 +59,7 @@ export const Rooms: React.FC<RoomsProps> = ({ onSelectRoomForBooking, onOpenImag
 
   const handleWhatsAppRoomInquiry = (room: Room) => {
     const text = encodeURIComponent(
-      `Hello Bageshree Home Stay, I am interested in booking the "${room.name}" (₹${room.pricePerNight}/night). Please let me know current availability.`
+      `Hello Bageshree Home Stay, I am interested in booking the "${room.name}" (₹${room.pricePerNight.toLocaleString('en-IN')}/night). Please let me know current availability.`
     );
     window.open(`https://wa.me/${PROPERTY_INFO.whatsappNumber}?text=${text}`, '_blank');
   };
@@ -146,16 +147,16 @@ export const Rooms: React.FC<RoomsProps> = ({ onSelectRoomForBooking, onOpenImag
                 {/* Card Content */}
                 <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
                   <div>
-                    {/* Room Capacity & Beds */}
-                    <div className="flex flex-wrap items-center gap-3 text-xs text-[#526359] mb-3">
+                    {/* Room Capacity & Beds with clean tabular styling */}
+                    <div className="flex flex-wrap items-center gap-3 text-xs text-[#526359] mb-3 font-sans">
                       <span className="inline-flex items-center gap-1.5 font-medium">
                         <Users className="w-3.5 h-3.5 text-[#1b4332]" />
-                        {room.capacity}
+                        <span className="tabular-nums">{room.capacity}</span>
                       </span>
                       <span>•</span>
                       <span className="inline-flex items-center gap-1.5 font-medium">
                         <BedDouble className="w-3.5 h-3.5 text-[#1b4332]" />
-                        {room.bedType}
+                        <span>{room.bedType}</span>
                       </span>
                     </div>
 
@@ -193,17 +194,14 @@ export const Rooms: React.FC<RoomsProps> = ({ onSelectRoomForBooking, onOpenImag
                     </ul>
                   </div>
 
-                  {/* Pricing and Action CTAs */}
+                  {/* Pricing and Action CTAs with clean PriceTag component */}
                   <div className="border-t border-[#e8ddcb] pt-5 mt-auto">
                     <div className="flex items-baseline justify-between mb-4">
                       <div>
-                        <span className="text-xs text-[#718277]">Starting from</span>
-                        <div className="flex items-baseline gap-1">
-                          <span className="font-serif text-2xl font-bold text-[#143224]">
-                            ₹{room.pricePerNight}
-                          </span>
-                          <span className="text-xs text-[#526359]">/ night</span>
-                        </div>
+                        <span className="text-[11px] text-[#718277] uppercase tracking-wide block mb-0.5">
+                          Starting from
+                        </span>
+                        <PriceTag amount={room.pricePerNight} size="md" />
                       </div>
                       <span className="text-[11px] text-[#1b4332] font-semibold bg-[#1b4332]/10 px-2.5 py-1 rounded-full">
                         Best Direct Price

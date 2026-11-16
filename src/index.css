@@ -7,6 +7,26 @@
     --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   }
 
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-scrolling iframe {
+    pointer-events: none;
+  }
+
   body {
     font-family: var(--font-sans);
     background-color: #fbf9f5;
@@ -19,6 +39,11 @@
 
   .font-display {
     font-family: var(--font-display);
+  }
+
+  /* All numbers across the website use crisp tabular sans font */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
   }
 }
 

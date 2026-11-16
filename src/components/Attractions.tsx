@@ -38,7 +38,7 @@ export const Attractions: React.FC = () => {
               key={spot.name}
               className="bg-[#f5efe3] rounded-3xl overflow-hidden border border-[#e5d8c3] shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group"
             >
-              {/* Image & Distance Pills */}
+              {/* Image & Distance Pills with Tabular Font */}
               <div className="relative aspect-[16/10] overflow-hidden bg-[#e0d8cc]">
                 <img
                   src={spot.imageUrl}
@@ -53,14 +53,14 @@ export const Attractions: React.FC = () => {
                   </span>
                 </div>
 
-                <div className="absolute bottom-3 right-3 flex items-center gap-2">
-                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/60 text-white text-[11px] font-medium backdrop-blur-md">
+                <div className="absolute bottom-3 right-3 flex items-center gap-2 font-sans tabular-nums">
+                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/60 text-white text-[11px] font-bold backdrop-blur-md">
                     <Clock className="w-3 h-3 text-[#d4af37]" />
-                    {spot.driveTime}
+                    <span>{spot.driveTime}</span>
                   </span>
-                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-[#1b4332] text-white text-[11px] font-semibold">
+                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-[#1b4332] text-white text-[11px] font-bold">
                     <MapPin className="w-3 h-3 text-[#d4af37]" />
-                    {spot.distance}
+                    <span>{spot.distance}</span>
                   </span>
                 </div>
               </div>

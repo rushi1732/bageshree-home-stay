@@ -42,7 +42,7 @@ export const Footer: React.FC = () => {
 
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#1b4332] text-[#d4af37] text-xs font-semibold border border-[#d4af37]/30">
               <Award className="w-3.5 h-3.5" />
-              <span>MTDC Reg. No. R760 Certified</span>
+              <span className="font-sans tabular-nums">MTDC Reg. No. R760 Certified</span>
             </div>
           </div>
 
@@ -68,6 +68,18 @@ export const Footer: React.FC = () => {
                 <a href="#rooms" className="hover:text-[#d4af37] transition-colors flex items-center gap-1.5">
                   <ChevronRight className="w-3 h-3 text-[#1b4332]" />
                   <span>Rooms & Tariff</span>
+                </a>
+              </li>
+              <li>
+                <a href="#dining" className="hover:text-[#d4af37] transition-colors flex items-center gap-1.5">
+                  <ChevronRight className="w-3 h-3 text-[#1b4332]" />
+                  <span>Konkan Dining</span>
+                </a>
+              </li>
+              <li>
+                <a href="#calculator" className="hover:text-[#d4af37] transition-colors flex items-center gap-1.5">
+                  <ChevronRight className="w-3 h-3 text-[#1b4332]" />
+                  <span>Tariff Calculator</span>
                 </a>
               </li>
               <li>
@@ -99,15 +111,21 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2.5 text-xs text-[#a3bdad]">
               <li className="p-2.5 rounded-xl bg-[#112d1f] border border-[#1b4332]/80">
                 <span className="font-semibold text-white block">Deluxe AC Garden Room</span>
-                <span className="text-[11px] text-[#d4af37]">₹2,200 / night • Inverter Backup</span>
+                <span className="text-[11px] text-[#d4af37] font-sans font-bold tabular-nums">
+                  ₹2,200 / night • Inverter Backup
+                </span>
               </li>
               <li className="p-2.5 rounded-xl bg-[#112d1f] border border-[#1b4332]/80">
                 <span className="font-semibold text-white block">Executive Family AC Suite</span>
-                <span className="text-[11px] text-[#d4af37]">₹3,500 / night • 4-6 Family Capacity</span>
+                <span className="text-[11px] text-[#d4af37] font-sans font-bold tabular-nums">
+                  ₹3,500 / night • 4-6 Family Capacity
+                </span>
               </li>
               <li className="p-2.5 rounded-xl bg-[#112d1f] border border-[#1b4332]/80">
                 <span className="font-semibold text-white block">Comfort Nature Breeze Room</span>
-                <span className="text-[11px] text-[#d4af37]">₹1,600 / night • Natural Ventilation</span>
+                <span className="text-[11px] text-[#d4af37] font-sans font-bold tabular-nums">
+                  ₹1,600 / night • Natural Ventilation
+                </span>
               </li>
             </ul>
           </div>
@@ -123,7 +141,7 @@ export const Footer: React.FC = () => {
                 <span>{PROPERTY_INFO.address}</span>
               </div>
 
-              <div className="flex items-center gap-2.5">
+              <div className="flex items-center gap-2.5 font-sans tabular-nums">
                 <Phone className="w-4 h-4 text-[#d4af37] shrink-0" />
                 <a href={`tel:${PROPERTY_INFO.phoneRaw}`} className="hover:text-white transition-colors">
                   {PROPERTY_INFO.phones[0]} / {PROPERTY_INFO.phones[1]}

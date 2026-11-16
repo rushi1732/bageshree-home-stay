@@ -9,6 +9,7 @@ import {
   PhoneCall
 } from 'lucide-react';
 import { PROPERTY_INFO } from '../data/homestayData';
+import { AnimatedCounter } from './AnimatedCounter';
 
 export const About: React.FC = () => {
   return (
@@ -79,7 +80,7 @@ export const About: React.FC = () => {
                   <span className="block text-[11px] font-bold uppercase tracking-wider text-[#1b4332]">
                     Official Approval
                   </span>
-                  <span className="block text-sm font-bold text-[#1a2e22]">
+                  <span className="block font-sans text-sm font-bold text-[#1a2e22] tabular-nums">
                     MTDC Reg. R760
                   </span>
                   <span className="text-[10px] text-[#718277]">
@@ -191,7 +192,7 @@ export const About: React.FC = () => {
                 className="inline-flex items-center gap-2 text-xs font-bold text-[#1b4332] hover:text-[#0d2319] underline underline-offset-4"
               >
                 <PhoneCall className="w-3.5 h-3.5 text-[#c49246]" />
-                <span>Call Us for Inquiries</span>
+                <span className="font-sans tabular-nums">Call Us: {PROPERTY_INFO.phones[0]}</span>
               </a>
             </div>
 
@@ -199,11 +200,11 @@ export const About: React.FC = () => {
 
         </div>
 
-        {/* Feature Highlights Banner */}
+        {/* Feature Highlights Banner with Animated Counters */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 sm:p-8 rounded-2xl bg-[#0d2319] text-[#e3ece6] shadow-xl border border-[#1b4332]">
           <div className="text-center p-3 border-r border-[#1b4332] last:border-none">
-            <div className="font-serif text-2xl sm:text-3xl font-bold text-[#d4af37] mb-1">
-              4.9 / 5.0
+            <div className="text-2xl sm:text-3xl font-extrabold text-[#d4af37] mb-1">
+              <AnimatedCounter end={4.9} decimals={1} suffix=" / 5.0" />
             </div>
             <div className="text-xs text-[#a3bdad] font-medium">
               Guest Satisfaction Rating
@@ -211,8 +212,8 @@ export const About: React.FC = () => {
           </div>
 
           <div className="text-center p-3 border-r border-[#1b4332] last:border-none">
-            <div className="font-serif text-2xl sm:text-3xl font-bold text-[#d4af37] mb-1">
-              100%
+            <div className="text-2xl sm:text-3xl font-extrabold text-[#d4af37] mb-1">
+              <AnimatedCounter end={100} suffix="%" />
             </div>
             <div className="text-xs text-[#a3bdad] font-medium">
               Power & Inverter Backup
@@ -220,8 +221,8 @@ export const About: React.FC = () => {
           </div>
 
           <div className="text-center p-3 border-r border-[#1b4332] last:border-none">
-            <div className="font-serif text-2xl sm:text-3xl font-bold text-[#d4af37] mb-1">
-              15 Mins
+            <div className="text-2xl sm:text-3xl font-extrabold text-[#d4af37] mb-1">
+              <AnimatedCounter end={15} suffix=" Mins" />
             </div>
             <div className="text-xs text-[#a3bdad] font-medium">
               Drive to Guhagar Beach
@@ -229,11 +230,11 @@ export const About: React.FC = () => {
           </div>
 
           <div className="text-center p-3">
-            <div className="font-serif text-2xl sm:text-3xl font-bold text-[#d4af37] mb-1">
-              MTDC
+            <div className="font-sans text-2xl sm:text-3xl font-extrabold text-[#d4af37] mb-1 tabular-nums">
+              R760
             </div>
             <div className="text-xs text-[#a3bdad] font-medium">
-              Reg. R760 Certified
+              MTDC Approved Standard
             </div>
           </div>
         </div>
