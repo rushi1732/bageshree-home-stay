@@ -26,11 +26,11 @@ export const Hero: React.FC<HeroProps> = ({ onExploreRooms, onExploreDining, onB
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Quick search bar state
+  // Quick search bar state with user-friendly defaults
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
-  const [guests, setGuests] = useState('2');
-  const [roomType, setRoomType] = useState('deluxe-ac-room');
+  const [guests, setGuests] = useState('3 Adults (Small Group)');
+  const [roomType, setRoomType] = useState('family-ac-suite');
 
   useEffect(() => {
     if (isPaused) return;
@@ -222,11 +222,11 @@ export const Hero: React.FC<HeroProps> = ({ onExploreRooms, onExploreDining, onB
               onChange={(e) => setGuests(e.target.value)}
               className="w-full px-3 py-2.5 rounded-lg border border-[#d6c7b0] bg-white text-xs font-semibold text-[#222] focus:outline-none focus:ring-2 focus:ring-[#1b4332]"
             >
-              <option value="1">1 Adult (Solo)</option>
-              <option value="2">2 Adults (Couple)</option>
-              <option value="3">3 Adults (Small Group)</option>
-              <option value="4">4 Adults (Family)</option>
-              <option value="5">5+ Adults (Large Family)</option>
+              <option value="1 Adult (Solo)">1 Adult (Solo)</option>
+              <option value="2 Adults (Couple)">2 Adults (Couple)</option>
+              <option value="3 Adults (Small Group)">3 Adults (Small Group)</option>
+              <option value="4 Adults (Family)">4 Adults (Family)</option>
+              <option value="5+ Adults (Large Family)">5+ Adults (Large Family)</option>
             </select>
           </div>
 
@@ -251,7 +251,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreRooms, onExploreDining, onB
           <div>
             <button
               type="submit"
-              className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-lg bg-[#1b4332] hover:bg-[#133426] text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md hover:shadow-lg"
+              className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-lg bg-[#1b4332] hover:bg-[#133426] text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md hover:shadow-lg cursor-pointer"
             >
               <Search className="w-4 h-4 text-[#d4af37]" />
               <span>Check Availability</span>

@@ -15,10 +15,14 @@ import { BookingSection } from './components/BookingSection';
 import { Footer } from './components/Footer';
 import { FloatingCTA } from './components/FloatingCTA';
 import { LightboxModal } from './components/LightboxModal';
+import { BookingModal } from './components/BookingModal';
 import { GALLERY_ITEMS, type GalleryItem } from './data/homestayData';
 
 export function App() {
   const [activeSection, setActiveSection] = useState('home');
+
+  // Booking popup modal state
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
   // Initialize Lenis smooth scroll for butter-smooth luxury scrolling
   useEffect(() => {
@@ -66,15 +70,26 @@ export function App() {
   }>({
     checkIn: '',
     checkOut: '',
-    guests: '2',
-    roomType: 'deluxe-ac-room',
+    guests: '3 Adults (Small Group)',
+    roomType: 'family-ac-suite',
   });
 
-  const scrollToBooking = () => {
-    const el = document.getElementById('contact');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+  // Opens the separate popup modal directly without scrolling down
+  const handleHeroBooking = (params?: { checkIn: string; checkOut: string; guests: string; roomType: string }) => {
+    if (params) {
+      setBookingPrefill(params);
     }
+    setIsBookingModalOpen(true);
+  };
+
+  const handleOpenBookingModal = (roomId?: string) => {
+    if (roomId && typeof roomId === 'string') {
+      setBookingPrefill((prev) => ({
+        ...prev,
+        roomType: roomId,
+      }));
+    }
+    setIsBookingModalOpen(true);
   };
 
   const scrollToRooms = () => {
@@ -89,21 +104,6 @@ export function App() {
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
-  };
-
-  const handleHeroBooking = (params?: { checkIn: string; checkOut: string; guests: string; roomType: string }) => {
-    if (params) {
-      setBookingPrefill(params);
-    }
-    scrollToBooking();
-  };
-
-  const handleRoomSelect = (roomId: string) => {
-    setBookingPrefill((prev) => ({
-      ...prev,
-      roomType: roomId,
-    }));
-    scrollToBooking();
   };
 
   const handleOpenLightbox = (item: GalleryItem, index: number) => {
@@ -154,9 +154,9 @@ export function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#fbf9f5] text-[#1e2822] selection:bg-[#1b4332] selection:text-white">
-      {/* Sticky Navigation with Soundscape Toggle */}
+      {/* Sticky Navigation with Soundscape Toggle & Direct Modal trigger */}
       <Navbar 
-        onBookClick={scrollToBooking} 
+        onBookClick={() => handleOpenBookingModal()} 
         onPageSelect={setActiveSection}
         activePage={activeSection}
       />
@@ -172,7 +172,7 @@ export function App() {
         <About />
 
         <Rooms
-          onSelectRoomForBooking={handleRoomSelect}
+          onSelectRoomForBooking={(id) => handleOpenBookingModal(id)}
           onOpenImageModal={handleOpenCustomImageModal}
         />
 
@@ -197,7 +197,14 @@ export function App() {
       <Footer />
 
       {/* Floating CTA buttons */}
-      <FloatingCTA onBookClick={scrollToBooking} />
+      <FloatingCTA onBookClick={() => handleOpenBookingModal()} />
+
+      {/* Separate Luxury Booking Inquiry Popup Modal */}
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+        initialValues={bookingPrefill}
+      />
 
       {/* Fullscreen Lightbox Modal */}
       <LightboxModal
