@@ -49,25 +49,25 @@ export const About: React.FC = () => {
               {/* Main Image */}
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[4/3] group">
                 <img
-                  src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1000&q=80"
+                  src="/images/property/property-1.jpg"
                   alt="Bageshree Home Stay Surrounded by Greenery"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 text-white text-xs font-medium">
-                  Lush compound framed by tropical Konkan coconut & mango foliage
+                  Traditional Konkan red-tile homestay amidst tropical coconut & mango foliage
                 </div>
               </div>
 
               {/* Overlapping Floating Secondary Image */}
               <div className="hidden sm:block absolute -bottom-8 -right-6 w-48 h-48 sm:w-56 sm:h-56 rounded-2xl overflow-hidden shadow-2xl border-4 border-white group">
                 <img
-                  src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=600&q=80"
+                  src="/images/rooms/family/family-1.jpg"
                   alt="Spotless Room Interior"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute bottom-2 left-2 bg-[#0d2319]/80 backdrop-blur-md px-2.5 py-1 rounded text-[10px] text-[#e3ece6] font-semibold">
-                  Spacious AC Comfort
+                  Spacious Family AC Suite
                 </div>
               </div>
 
