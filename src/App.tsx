@@ -10,6 +10,7 @@ import { TariffCalculator } from './components/TariffCalculator';
 import { Gallery } from './components/Gallery';
 import { Attractions } from './components/Attractions';
 import { Reviews } from './components/Reviews';
+import { FAQSection } from './components/FAQSection';
 import { LocationMap } from './components/LocationMap';
 import { BookingSection } from './components/BookingSection';
 import { Footer } from './components/Footer';
@@ -187,6 +188,8 @@ export function App() {
         <Attractions />
 
         <Reviews />
+
+        <FAQSection />
 
         <LocationMap />
 

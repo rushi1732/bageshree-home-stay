@@ -100,6 +100,12 @@ export const Footer: React.FC = () => {
                   <span>Explore Guhagar</span>
                 </a>
               </li>
+              <li>
+                <a href="#faq" className="hover:text-[#d4af37] transition-colors flex items-center gap-1.5">
+                  <ChevronRight className="w-3 h-3 text-[#1b4332]" />
+                  <span>FAQs & Help</span>
+                </a>
+              </li>
             </ul>
           </div>
 
