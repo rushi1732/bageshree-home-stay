@@ -83,7 +83,7 @@ export const HERO_SLIDES = [
     accent: "Comfort & Cleanliness",
   },
   {
-    image: "/images/night/night-1.jpg",
+    image: "/images/night/night-3.jpg",
     title: "Enchanting Evening Ambience",
     subtitle: "Relax under warm fairy-lit gardens surrounded by pure country air and starry Konkan skies.",
     accent: "Magical Garden Evenings",
@@ -140,10 +140,10 @@ export const ROOMS: Room[] = [
     bookingCode: "1524295402",
     maxGuests: 2,
     pricePerNight: 2200,
-    image: "/images/rooms/deluxe/deluxe-1.jpg",
+    image: "/images/rooms/deluxe/deluxe-3.jpg",
     additionalImages: [
+      "/images/rooms/deluxe/deluxe-1.jpg",
       "/images/rooms/deluxe/deluxe-2.jpg",
-      "/images/rooms/deluxe/deluxe-3.jpg",
     ],
     description: "Immaculately maintained, air-conditioned bedroom with premium double bed, crisp white linens, private bathroom with hot water, and large windows looking out onto our lush garden and mango trees. Fitted with full inverter backup for continuous comfort.",
     features: [

@@ -53,9 +53,11 @@ export const About: React.FC = () => {
                   alt="Bageshree Home Stay Surrounded by Greenery"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4 text-white text-xs font-medium">
-                  Traditional Konkan red-tile homestay amidst tropical coconut & mango foliage
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                <div className="absolute bottom-3.5 left-4 max-w-[50%] sm:max-w-[48%] z-10">
+                  <div className="inline-block px-3 py-1.5 rounded-xl bg-black/75 backdrop-blur-md border border-white/25 text-white text-[11px] sm:text-xs font-medium leading-tight">
+                    Traditional Konkan homestay amidst coconut & mango groves
+                  </div>
                 </div>
               </div>
 
