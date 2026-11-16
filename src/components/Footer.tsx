@@ -8,7 +8,7 @@ import {
   MessageCircle, 
   ChevronRight
 } from 'lucide-react';
-import { PROPERTY_INFO } from '../data/homestayData';
+import { PROPERTY_INFO, ROOMS } from '../data/homestayData';
 
 export const Footer: React.FC = () => {
   return (
@@ -115,24 +115,14 @@ export const Footer: React.FC = () => {
               Accommodations
             </h4>
             <ul className="space-y-2.5 text-xs text-[#a3bdad]">
-              <li className="p-2.5 rounded-xl bg-[#112d1f] border border-[#1b4332]/80">
-                <span className="font-semibold text-white block">Deluxe AC Garden Room</span>
-                <span className="text-[11px] text-[#d4af37] font-sans font-bold tabular-nums">
-                  ₹2,200 / night • Inverter Backup
-                </span>
-              </li>
-              <li className="p-2.5 rounded-xl bg-[#112d1f] border border-[#1b4332]/80">
-                <span className="font-semibold text-white block">Executive Family AC Suite</span>
-                <span className="text-[11px] text-[#d4af37] font-sans font-bold tabular-nums">
-                  ₹3,500 / night • 4-6 Family Capacity
-                </span>
-              </li>
-              <li className="p-2.5 rounded-xl bg-[#112d1f] border border-[#1b4332]/80">
-                <span className="font-semibold text-white block">Comfort Nature Breeze Room</span>
-                <span className="text-[11px] text-[#d4af37] font-sans font-bold tabular-nums">
-                  ₹1,600 / night • Natural Ventilation
-                </span>
-              </li>
+              {ROOMS.map((r) => (
+                <li key={r.id} className="p-2.5 rounded-xl bg-[#112d1f] border border-[#1b4332]/80">
+                  <span className="font-semibold text-white block">{r.name}</span>
+                  <span className="text-[11px] text-[#d4af37] font-sans font-bold tabular-nums">
+                    ₹{r.pricePerNight.toLocaleString('en-IN')} / night • {r.capacity}
+                  </span>
+                </li>
+              ))}
             </ul>
           </div>
 

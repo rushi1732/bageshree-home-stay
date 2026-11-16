@@ -14,7 +14,7 @@ import {
   Sparkles,
   UtensilsCrossed
 } from 'lucide-react';
-import { HERO_SLIDES, PROPERTY_INFO } from '../data/homestayData';
+import { HERO_SLIDES, PROPERTY_INFO, ROOMS } from '../data/homestayData';
 
 interface HeroProps {
   onExploreRooms: () => void;
@@ -241,9 +241,11 @@ export const Hero: React.FC<HeroProps> = ({ onExploreRooms, onExploreDining, onB
               onChange={(e) => setRoomType(e.target.value)}
               className="w-full px-3 py-2.5 rounded-lg border border-[#d6c7b0] bg-white text-xs font-semibold text-[#222] focus:outline-none focus:ring-2 focus:ring-[#1b4332]"
             >
-              <option value="deluxe-ac-room">Deluxe AC Garden Room (₹2,200)</option>
-              <option value="family-ac-suite">Executive Family AC Suite (₹3,500)</option>
-              <option value="comfort-nature-room">Comfort Nature Breeze Room (₹1,600)</option>
+              {ROOMS.map((r) => (
+                <option key={r.id} value={r.id}>
+                  {r.name} (₹{r.pricePerNight.toLocaleString('en-IN')})
+                </option>
+              ))}
             </select>
           </div>
 

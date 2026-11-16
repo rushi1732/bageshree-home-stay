@@ -23,10 +23,12 @@ interface RoomsProps {
 }
 
 export const Rooms: React.FC<RoomsProps> = ({ onSelectRoomForBooking, onOpenImageModal }) => {
-  const [selectedImages, setSelectedImages] = useState<{ [roomId: string]: string }>({
-    'deluxe-ac-room': ROOMS[0].image,
-    'family-ac-suite': ROOMS[1].image,
-    'comfort-nature-room': ROOMS[2].image,
+  const [selectedImages, setSelectedImages] = useState<{ [roomId: string]: string }>(() => {
+    const initial: { [roomId: string]: string } = {};
+    ROOMS.forEach((r) => {
+      initial[r.id] = r.image;
+    });
+    return initial;
   });
 
   const getAmenityIcon = (iconName: string) => {
@@ -43,6 +45,8 @@ export const Rooms: React.FC<RoomsProps> = ({ onSelectRoomForBooking, onOpenImag
         return <Trees className="w-3.5 h-3.5" />;
       case 'Users':
         return <Users className="w-3.5 h-3.5" />;
+      case 'BedDouble':
+        return <BedDouble className="w-3.5 h-3.5" />;
       case 'ShieldCheck':
         return <ShieldCheck className="w-3.5 h-3.5" />;
       default:
@@ -107,11 +111,16 @@ export const Rooms: React.FC<RoomsProps> = ({ onSelectRoomForBooking, onOpenImag
                     onClick={() => onOpenImageModal(activeImage, room.name, room.description)}
                   />
                   
-                  {/* Badge: Type */}
-                  <div className="absolute top-4 left-4">
+                  {/* Badge: Type & Actual Photo */}
+                  <div className="absolute top-4 left-4 flex flex-col gap-1.5 items-start">
                     <span className="px-3 py-1.5 rounded-full bg-[#0d2319]/85 text-[#e5c178] text-[11px] font-bold uppercase tracking-wider backdrop-blur-md border border-[#d4af37]/30">
                       {room.type}
                     </span>
+                    {activeImage.includes('/images/rooms/') && (
+                      <span className="px-2.5 py-1 rounded-full bg-black/60 text-white text-[10px] font-medium backdrop-blur-md border border-white/20">
+                        Actual Room Photo
+                      </span>
+                    )}
                   </div>
 
                   {/* Zoom indicator button */}
