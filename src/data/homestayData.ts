@@ -79,16 +79,16 @@ export const HERO_SLIDES = [
     accent: "Authentic Nature Retreat",
   },
   {
-    image: "/images/rooms/family/family-1.jpg",
-    title: "Warm, Spotless Family Comfort",
-    subtitle: "Spacious air-conditioned rooms designed with cozy warmth and 24/7 power backup.",
-    accent: "Comfort & Cleanliness",
+    image: "/images/night/night-2.jpg",
+    title: "Enchanting Night Garden Illumination",
+    subtitle: "Magical fairy-lit garden pathways and peaceful open-air spaces to relax with family under starry skies.",
+    accent: "Magical Garden Evenings",
   },
   {
     image: "/images/night/night-3.jpg",
-    title: "Enchanting Evening Ambience",
+    title: "Tranquil Evening Ambiance",
     subtitle: "Relax under warm fairy-lit gardens surrounded by pure country air and starry Konkan skies.",
-    accent: "Magical Garden Evenings",
+    accent: "Peaceful Konkan Nights",
   },
   {
     image: "/images/property/property-4.jpg",
