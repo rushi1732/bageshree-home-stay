@@ -1,6 +1,5 @@
 import React from 'react';
 import { 
-  Leaf, 
   Phone, 
   Mail, 
   MapPin, 
@@ -21,9 +20,11 @@ export const Footer: React.FC = () => {
           {/* Brand & MTDC Col */}
           <div className="lg:col-span-4 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-[#1b4332] flex items-center justify-center text-[#d4af37] border border-[#2d6a4f]">
-                <Leaf className="w-5 h-5 stroke-[1.8]" />
-              </div>
+              <img
+                src="/logo.png"
+                alt="Bageshree Home Stay Official Logo"
+                className="w-12 h-12 rounded-full object-contain bg-[#fbf9f5] p-0.5 border border-[#d4af37]/50 shadow-md shrink-0"
+              />
               <div>
                 <span className="block font-serif text-2xl font-bold tracking-tight text-white leading-tight">
                   Bageshree

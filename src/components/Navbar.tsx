@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  Leaf, 
   Phone, 
   Menu, 
   X, 
@@ -109,9 +108,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick, onPageSelect }) => 
             className="flex items-center gap-3 shrink-0 group select-none"
             aria-label="Bageshree Home Stay Homepage"
           >
-            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#1b4332] flex items-center justify-center text-[#d4af37] shadow-inner group-hover:scale-105 transition-transform duration-300 border border-[#2d6a4f] shrink-0">
-              <Leaf className="w-5 h-5 sm:w-6 sm:h-6 stroke-[1.8]" />
-            </div>
+            <img 
+              src="/logo.png" 
+              alt="Bageshree Home Stay Logo" 
+              className="w-11 h-11 sm:w-12 sm:h-12 rounded-full object-contain shrink-0 group-hover:scale-105 transition-transform duration-300 drop-shadow-md border border-[#1b4332]/20 bg-[#fbf9f5]" 
+            />
             <div className="flex flex-col">
               <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-[#143224] leading-tight group-hover:text-[#1b4332] transition-colors">
                 Bageshree

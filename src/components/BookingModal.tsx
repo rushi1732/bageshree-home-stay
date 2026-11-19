@@ -132,21 +132,28 @@ Kindly confirm room availability and booking details.`;
       >
         {/* Top Header Bar */}
         <div className="bg-[#0d2319] text-white p-5 sm:p-6 flex items-start justify-between border-b border-[#1b4332]">
-          <div>
-            <div className="flex items-center gap-2 mb-1.5">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#1b4332] text-[#d4af37] text-[11px] font-semibold border border-[#d4af37]/30">
-                <Award className="w-3.5 h-3.5" />
-                <span className="font-sans tabular-nums">MTDC Approved (R760)</span>
-              </span>
-              <span className="text-xs text-[#a9c2b4]">Guhagar, Ratnagiri</span>
-            </div>
+          <div className="flex items-start gap-3.5">
+            <img 
+              src="/logo.png" 
+              alt="Bageshree Logo" 
+              className="w-12 h-12 rounded-full object-contain bg-[#fbf9f5] p-0.5 border border-[#d4af37]/40 shrink-0 hidden sm:block shadow-md mt-0.5" 
+            />
+            <div>
+              <div className="flex items-center gap-2 mb-1.5">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#1b4332] text-[#d4af37] text-[11px] font-semibold border border-[#d4af37]/30">
+                  <Award className="w-3.5 h-3.5" />
+                  <span className="font-sans tabular-nums">MTDC Approved (R760)</span>
+                </span>
+                <span className="text-xs text-[#a9c2b4]">Guhagar, Ratnagiri</span>
+              </div>
 
-            <h3 className="font-serif text-2xl font-bold text-white tracking-tight">
-              Direct Booking Inquiry
-            </h3>
-            <p className="text-xs text-[#c6dad0] mt-0.5">
-              Your inquiry formats instantly for direct host confirmation on WhatsApp
-            </p>
+              <h3 className="font-serif text-2xl font-bold text-white tracking-tight">
+                Direct Booking Inquiry
+              </h3>
+              <p className="text-xs text-[#c6dad0] mt-0.5">
+                Your inquiry formats instantly for direct host confirmation on WhatsApp
+              </p>
+            </div>
           </div>
 
           <button
