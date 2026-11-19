@@ -123,7 +123,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreRooms, onExploreDining, onB
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-24 lg:pt-28 pb-12 flex-1 flex flex-col justify-center">
         
         {/* Top Badges */}
-        <div className="flex flex-wrap items-center gap-3 mb-6">
+        <div className="flex flex-wrap items-center gap-3 mb-6 animate-hero-down anim-delay-100">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1b4332]/90 text-[#e5c178] border border-[#d4af37]/35 text-xs font-semibold backdrop-blur-md">
             <Award className="w-3.5 h-3.5 text-[#d4af37]" />
             <span className="font-sans tabular-nums">MTDC Approved (R760)</span>
@@ -147,23 +147,23 @@ export const Hero: React.FC<HeroProps> = ({ onExploreRooms, onExploreDining, onB
 
         {/* Main Headline */}
         <div className="max-w-4xl">
-          <span className="text-xs uppercase tracking-[0.25em] text-[#d4af37] font-semibold block mb-2">
+          <span className="text-xs uppercase tracking-[0.25em] text-[#d4af37] font-semibold block mb-2 animate-hero-up anim-delay-200">
             Welcome to Bageshree Home Stay • बागेमधे शांतता व सुख
           </span>
-          <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.15] mb-5">
+          <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.15] mb-5 animate-hero-up anim-delay-300">
             Experience Authentic Konkan Hospitality{' '}
             <span className="italic font-normal text-[#e6c687] block sm:inline">
               amidst Nature's Serenity.
             </span>
           </h1>
 
-          <p className="text-base sm:text-lg lg:text-xl text-[#d4e4db] max-w-2xl font-light leading-relaxed mb-8">
+          <p className="text-base sm:text-lg lg:text-xl text-[#d4e4db] max-w-2xl font-light leading-relaxed mb-8 animate-hero-up anim-delay-450">
             Cozy, spacious AC rooms, home-cooked local meals, and peaceful family getaways 
             surrounded by lush Alphonso mango and cashew groves in Guhagar.
           </p>
 
           {/* Dual CTAs */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-10">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-10 animate-hero-up anim-delay-600">
             <button
               onClick={onExploreRooms}
               className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#d4af37] hover:bg-[#c49f28] text-[#0d2319] font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
@@ -194,7 +194,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreRooms, onExploreDining, onB
           </div>
 
           {/* Quick Key Highlights Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-white/15 max-w-3xl">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-white/15 max-w-3xl animate-hero-up anim-delay-750">
             <div className="flex items-center gap-2 text-white/90 text-xs">
               <ShieldCheck className="w-4 h-4 text-[#d4af37] shrink-0" />
               <span>Spotless Hygiene</span>
@@ -217,7 +217,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreRooms, onExploreDining, onB
       </div>
 
       {/* Interactive Quick Reservation Booking Bar at Hero Bottom */}
-      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mb-8 w-full">
+      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mb-8 w-full animate-hero-booking anim-delay-900">
         <form 
           onSubmit={handleQuickCheck}
           className="bg-[#fbf9f5] rounded-2xl shadow-2xl p-4 sm:p-5 border border-[#e5d8c3] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5 items-end"

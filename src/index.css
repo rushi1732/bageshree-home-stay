@@ -84,3 +84,75 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #1b4332;
 }
+
+/* ========================================================
+   Cinematic Luxury Hero Entrance Animations
+   ======================================================== */
+@keyframes heroFadeDown {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -24px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes heroFadeUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 32px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes heroBookingFloat {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 50px, 0) scale(0.96);
+  }
+  75% {
+    opacity: 1;
+    transform: translate3d(0, -3px, 0) scale(1.004);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.animate-hero-down {
+  animation: heroFadeDown 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-hero-up {
+  animation: heroFadeUp 0.95s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-hero-booking {
+  animation: heroBookingFloat 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Staggered delay utility classes */
+.anim-delay-100 { animation-delay: 100ms; }
+.anim-delay-200 { animation-delay: 200ms; }
+.anim-delay-300 { animation-delay: 300ms; }
+.anim-delay-450 { animation-delay: 450ms; }
+.anim-delay-600 { animation-delay: 600ms; }
+.anim-delay-750 { animation-delay: 750ms; }
+.anim-delay-900 { animation-delay: 900ms; }
+.anim-delay-1050 { animation-delay: 1050ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-down,
+  .animate-hero-up,
+  .animate-hero-booking {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
