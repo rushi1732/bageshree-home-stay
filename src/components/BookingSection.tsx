@@ -11,6 +11,7 @@ import {
   Award
 } from 'lucide-react';
 import { PROPERTY_INFO, ROOMS } from '../data/homestayData';
+import { getLocalToday, getNextDay, clampCheckInDate, clampCheckOutDate, calculateNightsBetween } from '../utils/dateUtils';
 import { PriceTag } from './PriceTag';
 
 interface BookingSectionProps {
@@ -23,19 +24,19 @@ interface BookingSectionProps {
 }
 
 export const BookingSection: React.FC<BookingSectionProps> = ({ initialValues }) => {
-  const today = new Date().toISOString().split('T')[0];
+  const today = getLocalToday();
   const [fullName, setFullName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [checkIn, setCheckIn] = useState(initialValues?.checkIn || '');
-  const [checkOut, setCheckOut] = useState(initialValues?.checkOut || '');
+  const [checkIn, setCheckIn] = useState(() => clampCheckInDate(initialValues?.checkIn));
+  const [checkOut, setCheckOut] = useState(() => clampCheckOutDate(initialValues?.checkIn, initialValues?.checkOut));
   const [guests, setGuests] = useState(initialValues?.guests || '2 Adults (Couple)');
   const [selectedRoomId, setSelectedRoomId] = useState(initialValues?.roomType || 'deluxe-ac-room');
   const [mealPreference, setMealPreference] = useState('both');
   const [specialNotes, setSpecialNotes] = useState('');
 
   useEffect(() => {
-    if (initialValues?.checkIn) setCheckIn(initialValues.checkIn);
-    if (initialValues?.checkOut) setCheckOut(initialValues.checkOut);
+    if (initialValues?.checkIn) setCheckIn(clampCheckInDate(initialValues.checkIn));
+    if (initialValues?.checkOut) setCheckOut(clampCheckOutDate(initialValues.checkIn, initialValues.checkOut));
     if (initialValues?.guests) {
       if (initialValues.guests === '1') setGuests('1 Adult (Solo)');
       else if (initialValues.guests === '2') setGuests('2 Adults (Couple)');
@@ -47,16 +48,34 @@ export const BookingSection: React.FC<BookingSectionProps> = ({ initialValues })
     if (initialValues?.roomType) setSelectedRoomId(initialValues.roomType);
   }, [initialValues]);
 
+  const handleCheckInChange = (val: string) => {
+    if (!val) {
+      setCheckIn(today);
+      return;
+    }
+    const validCheckIn = val < today ? today : val;
+    setCheckIn(validCheckIn);
+
+    const minCheckOut = getNextDay(validCheckIn, 1);
+    if (!checkOut || checkOut < minCheckOut) {
+      setCheckOut(minCheckOut);
+    }
+  };
+
+  const handleCheckOutChange = (val: string) => {
+    const minCheckOut = getNextDay(checkIn || today, 1);
+    if (!val || val < minCheckOut) {
+      setCheckOut(minCheckOut);
+      return;
+    }
+    setCheckOut(val);
+  };
+
   // Calculate nights and estimated price
   const selectedRoom = ROOMS.find((r) => r.id === selectedRoomId) || ROOMS[0];
   
   const calculateNights = () => {
-    if (!checkIn || !checkOut) return 1;
-    const start = new Date(checkIn);
-    const end = new Date(checkOut);
-    const diffTime = end.getTime() - start.getTime();
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays > 0 ? diffDays : 1;
+    return calculateNightsBetween(checkIn, checkOut);
   };
 
   const nights = calculateNights();
@@ -65,17 +84,22 @@ export const BookingSection: React.FC<BookingSectionProps> = ({ initialValues })
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
+    const validCheckIn = clampCheckInDate(checkIn);
+    const validCheckOut = clampCheckOutDate(validCheckIn, checkOut);
+    const safeNights = calculateNightsBetween(validCheckIn, validCheckOut);
+    const safeEstimatedTotal = selectedRoom.pricePerNight * safeNights;
+
     const formattedMessage = `*New Stay Inquiry - Bageshree Home Stay*
 ---------------------------------------
 *Guest Name:* ${fullName || 'Guest'}
 *Contact Phone:* ${phoneNumber || 'Not provided'}
 *Room Choice:* ${selectedRoom.name}
-*Check-In:* ${checkIn || 'To be decided'}
-*Check-Out:* ${checkOut || 'To be decided'}
-*Nights:* ${nights}
+*Check-In:* ${validCheckIn}
+*Check-Out:* ${validCheckOut}
+*Nights:* ${safeNights} Night(s)
 *Number of Guests:* ${guests}
 *Food Preference:* ${mealPreference}
-*Estimated Tariff:* ₹${estimatedTotal.toLocaleString('en-IN')} (${nights} night${nights > 1 ? 's' : ''})
+*Estimated Tariff:* ₹${safeEstimatedTotal.toLocaleString('en-IN')} (${safeNights} night${safeNights > 1 ? 's' : ''})
 *Notes:* ${specialNotes || 'None'}
 ---------------------------------------
 Kindly confirm room availability and payment details.`;
@@ -161,37 +185,37 @@ Kindly confirm room availability and payment details.`;
               {/* Dates */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-[#1e3427] mb-1.5 uppercase tracking-wide flex items-center gap-1">
-                    <Calendar className="w-3.5 h-3.5 text-[#1b4332]" />
-                    Check-In Date *
+                  <label className="block text-xs font-bold text-[#1e3427] mb-1.5 uppercase tracking-wide flex items-center justify-between">
+                    <span className="flex items-center gap-1">
+                      <Calendar className="w-3.5 h-3.5 text-[#1b4332]" />
+                      Check-In Date *
+                    </span>
+                    <span className="text-[10px] text-[#856d49] lowercase font-normal">min: today</span>
                   </label>
                   <input
                     type="date"
                     required
                     min={today}
                     value={checkIn}
-                    onChange={(e) => {
-                      const newCheckIn = e.target.value;
-                      setCheckIn(newCheckIn);
-                      if (checkOut && newCheckIn > checkOut) {
-                        setCheckOut(newCheckIn);
-                      }
-                    }}
+                    onChange={(e) => handleCheckInChange(e.target.value)}
                     className="w-full px-4 py-3 rounded-xl border border-[#d6c7b0] bg-white text-sm font-sans tabular-nums text-[#222] focus:outline-none focus:ring-2 focus:ring-[#1b4332]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#1e3427] mb-1.5 uppercase tracking-wide flex items-center gap-1">
-                    <Calendar className="w-3.5 h-3.5 text-[#1b4332]" />
-                    Check-Out Date *
+                  <label className="block text-xs font-bold text-[#1e3427] mb-1.5 uppercase tracking-wide flex items-center justify-between">
+                    <span className="flex items-center gap-1">
+                      <Calendar className="w-3.5 h-3.5 text-[#1b4332]" />
+                      Check-Out Date *
+                    </span>
+                    <span className="text-[10px] text-[#856d49] lowercase font-normal">min: +1 night</span>
                   </label>
                   <input
                     type="date"
                     required
-                    min={checkIn || today}
+                    min={getNextDay(checkIn || today, 1)}
                     value={checkOut}
-                    onChange={(e) => setCheckOut(e.target.value)}
+                    onChange={(e) => handleCheckOutChange(e.target.value)}
                     className="w-full px-4 py-3 rounded-xl border border-[#d6c7b0] bg-white text-sm font-sans tabular-nums text-[#222] focus:outline-none focus:ring-2 focus:ring-[#1b4332]"
                   />
                 </div>

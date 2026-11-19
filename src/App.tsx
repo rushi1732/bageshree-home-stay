@@ -18,6 +18,7 @@ import { FloatingCTA } from './components/FloatingCTA';
 import { LightboxModal } from './components/LightboxModal';
 import { BookingModal } from './components/BookingModal';
 import { GALLERY_ITEMS, type GalleryItem } from './data/homestayData';
+import { getLocalToday, getNextDay, clampCheckInDate, clampCheckOutDate } from './utils/dateUtils';
 
 export function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -68,28 +69,38 @@ export function App() {
     checkOut?: string;
     guests?: string;
     roomType?: string;
-  }>({
-    checkIn: '',
-    checkOut: '',
+  }>(() => ({
+    checkIn: getLocalToday(),
+    checkOut: getNextDay(getLocalToday(), 1),
     guests: '3 Adults (Small Group)',
     roomType: 'family-ac-suite',
-  });
+  }));
 
   // Opens the separate popup modal directly without scrolling down
   const handleHeroBooking = (params?: { checkIn: string; checkOut: string; guests: string; roomType: string }) => {
     if (params) {
-      setBookingPrefill(params);
+      const validCheckIn = clampCheckInDate(params.checkIn);
+      const validCheckOut = clampCheckOutDate(validCheckIn, params.checkOut);
+      setBookingPrefill({
+        ...params,
+        checkIn: validCheckIn,
+        checkOut: validCheckOut,
+      });
     }
     setIsBookingModalOpen(true);
   };
 
   const handleOpenBookingModal = (roomId?: string) => {
-    if (roomId && typeof roomId === 'string') {
-      setBookingPrefill((prev) => ({
+    setBookingPrefill((prev) => {
+      const validCheckIn = clampCheckInDate(prev.checkIn);
+      const validCheckOut = clampCheckOutDate(validCheckIn, prev.checkOut);
+      return {
         ...prev,
-        roomType: roomId,
-      }));
-    }
+        checkIn: validCheckIn,
+        checkOut: validCheckOut,
+        ...(roomId && typeof roomId === 'string' ? { roomType: roomId } : {}),
+      };
+    });
     setIsBookingModalOpen(true);
   };
 

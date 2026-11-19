@@ -15,6 +15,7 @@ import {
   UtensilsCrossed
 } from 'lucide-react';
 import { HERO_SLIDES, PROPERTY_INFO, ROOMS } from '../data/homestayData';
+import { getLocalToday, getNextDay, clampCheckInDate, clampCheckOutDate } from '../utils/dateUtils';
 
 interface HeroProps {
   onExploreRooms: () => void;
@@ -23,13 +24,13 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onExploreRooms, onExploreDining, onBookNow }) => {
-  const today = new Date().toISOString().split('T')[0];
+  const today = getLocalToday();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Quick search bar state with user-friendly defaults
-  const [checkIn, setCheckIn] = useState('');
-  const [checkOut, setCheckOut] = useState('');
+  // Quick search bar state with today & tomorrow defaults
+  const [checkIn, setCheckIn] = useState(() => getLocalToday());
+  const [checkOut, setCheckOut] = useState(() => getNextDay(getLocalToday(), 1));
   const [guests, setGuests] = useState('3 Adults (Small Group)');
   const [roomType, setRoomType] = useState('family-ac-suite');
 
@@ -49,9 +50,38 @@ export const Hero: React.FC<HeroProps> = ({ onExploreRooms, onExploreDining, onB
     setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
   };
 
+  const handleCheckInChange = (val: string) => {
+    if (!val) {
+      setCheckIn(today);
+      return;
+    }
+    // Block any past date selection or typing
+    const validCheckIn = val < today ? today : val;
+    setCheckIn(validCheckIn);
+
+    // Check-out must be at least 1 day after check-in
+    const minCheckOut = getNextDay(validCheckIn, 1);
+    if (!checkOut || checkOut < minCheckOut) {
+      setCheckOut(minCheckOut);
+    }
+  };
+
+  const handleCheckOutChange = (val: string) => {
+    const minCheckOut = getNextDay(checkIn || today, 1);
+    if (!val || val < minCheckOut) {
+      setCheckOut(minCheckOut);
+      return;
+    }
+    setCheckOut(val);
+  };
+
   const handleQuickCheck = (e: React.FormEvent) => {
     e.preventDefault();
-    onBookNow({ checkIn, checkOut, guests, roomType });
+    const validCheckIn = clampCheckInDate(checkIn);
+    const validCheckOut = clampCheckOutDate(validCheckIn, checkOut);
+    setCheckIn(validCheckIn);
+    setCheckOut(validCheckOut);
+    onBookNow({ checkIn: validCheckIn, checkOut: validCheckOut, guests, roomType });
   };
 
   return (
@@ -186,36 +216,38 @@ export const Hero: React.FC<HeroProps> = ({ onExploreRooms, onExploreDining, onB
         >
           {/* Check-In */}
           <div>
-            <label className="block text-[11px] font-bold uppercase tracking-wider text-[#635544] mb-1.5 flex items-center gap-1.5">
-              <Calendar className="w-3.5 h-3.5 text-[#1b4332]" />
-              Check-In Date
+            <label className="block text-[11px] font-bold uppercase tracking-wider text-[#635544] mb-1.5 flex items-center justify-between">
+              <span className="flex items-center gap-1.5">
+                <Calendar className="w-3.5 h-3.5 text-[#1b4332]" />
+                Check-In Date
+              </span>
+              <span className="text-[9px] text-[#856d49] lowercase font-normal">min: today</span>
             </label>
             <input
               type="date"
+              required
               min={today}
               value={checkIn}
-              onChange={(e) => {
-                const newCheckIn = e.target.value;
-                setCheckIn(newCheckIn);
-                if (checkOut && newCheckIn > checkOut) {
-                  setCheckOut(newCheckIn);
-                }
-              }}
+              onChange={(e) => handleCheckInChange(e.target.value)}
               className="w-full px-3 py-2.5 rounded-lg border border-[#d6c7b0] bg-white text-xs font-sans tabular-nums text-[#222] focus:outline-none focus:ring-2 focus:ring-[#1b4332]"
             />
           </div>
 
           {/* Check-Out */}
           <div>
-            <label className="block text-[11px] font-bold uppercase tracking-wider text-[#635544] mb-1.5 flex items-center gap-1.5">
-              <Calendar className="w-3.5 h-3.5 text-[#1b4332]" />
-              Check-Out Date
+            <label className="block text-[11px] font-bold uppercase tracking-wider text-[#635544] mb-1.5 flex items-center justify-between">
+              <span className="flex items-center gap-1.5">
+                <Calendar className="w-3.5 h-3.5 text-[#1b4332]" />
+                Check-Out Date
+              </span>
+              <span className="text-[9px] text-[#856d49] lowercase font-normal">min: +1 night</span>
             </label>
             <input
               type="date"
-              min={checkIn || today}
+              required
+              min={getNextDay(checkIn || today, 1)}
               value={checkOut}
-              onChange={(e) => setCheckOut(e.target.value)}
+              onChange={(e) => handleCheckOutChange(e.target.value)}
               className="w-full px-3 py-2.5 rounded-lg border border-[#d6c7b0] bg-white text-xs font-sans tabular-nums text-[#222] focus:outline-none focus:ring-2 focus:ring-[#1b4332]"
             />
           </div>
