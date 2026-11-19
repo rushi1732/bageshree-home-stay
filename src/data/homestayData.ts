@@ -108,7 +108,7 @@ export const ROOMS: Room[] = [
     bedType: "1 Double Bed + 3 Single Beds (4 Beds Total)",
     bookingCode: "1524295401",
     maxGuests: 5,
-    pricePerNight: 3500,
+    pricePerNight: 4000,
     image: "/images/rooms/family/family-1.jpg",
     additionalImages: [
       "/images/rooms/family/family-2.jpg",
@@ -141,7 +141,7 @@ export const ROOMS: Room[] = [
     bedType: "1 Large Double Bed (+ Extra Mattress on request)",
     bookingCode: "1524295402",
     maxGuests: 2,
-    pricePerNight: 2200,
+    pricePerNight: 2000,
     image: "/images/rooms/deluxe/deluxe-3.jpg",
     additionalImages: [
       "/images/rooms/deluxe/deluxe-1.jpg",
@@ -173,7 +173,7 @@ export const ROOMS: Room[] = [
     bedType: "1 Comfortable Double Bed",
     bookingCode: "1524295403",
     maxGuests: 2,
-    pricePerNight: 1600,
+    pricePerNight: 1500,
     image: "/images/rooms/standard/standard-1.jpg",
     additionalImages: [
       "/images/rooms/standard/standard-2.jpg",

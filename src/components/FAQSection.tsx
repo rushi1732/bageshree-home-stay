@@ -24,7 +24,7 @@ export const FAQSection: React.FC = () => {
     },
     {
       question: "What is the tariff per night at Bageshree Home Stay?",
-      answer: "Tariffs start from ₹1,600/night for the Comfort Nature Breeze Room, ₹2,200/night for the Deluxe AC Garden Room, and ₹3,500/night for the Executive Family AC Suite (accommodating 4 to 6 guests). Direct booking with the host via WhatsApp guarantees the best rates with zero OTA commission markups.",
+      answer: "Tariffs start from ₹1,500/night for the Standard Double Room, ₹2,000/night for the Deluxe Ac Double Room, and ₹4,000/night for the Spacious Family AC Room (1 Double Bed + 3 Single Beds). Direct booking with the host via WhatsApp guarantees the best rates with zero OTA commission markups.",
     },
     {
       question: "Is secure car parking available on the property?",
