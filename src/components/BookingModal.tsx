@@ -8,7 +8,8 @@ import {
   Coffee, 
   MessageCircle, 
   Phone, 
-  Award
+  Award,
+  Sparkles
 } from 'lucide-react';
 import { ROOMS, PROPERTY_INFO } from '../data/homestayData';
 import { getLocalToday, getNextDay, clampCheckInDate, clampCheckOutDate, calculateNightsBetween } from '../utils/dateUtils';
@@ -39,6 +40,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   const [selectedRoomId, setSelectedRoomId] = useState(initialValues.roomType || 'family-ac-suite');
   const [mealPreference, setMealPreference] = useState('both');
   const [specialNotes, setSpecialNotes] = useState('');
+  const [dateNotice, setDateNotice] = useState('');
 
   // Update when initialValues change
   useEffect(() => {
@@ -57,10 +59,15 @@ export const BookingModal: React.FC<BookingModalProps> = ({
       setCheckIn(today);
       return;
     }
-    const validCheckIn = val < today ? today : val;
-    setCheckIn(validCheckIn);
+    if (val < today) {
+      setDateNotice('आजच्या आधीची तारीख लॉक आहे. आपोआप आजची तारीख निवडली आहे.');
+      setCheckIn(today);
+      setTimeout(() => setDateNotice(''), 4500);
+      return;
+    }
+    setCheckIn(val);
 
-    const minCheckOut = getNextDay(validCheckIn, 1);
+    const minCheckOut = getNextDay(val, 1);
     if (!checkOut || checkOut < minCheckOut) {
       setCheckOut(minCheckOut);
     }
@@ -69,7 +76,9 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   const handleCheckOutChange = (val: string) => {
     const minCheckOut = getNextDay(checkIn || today, 1);
     if (!val || val < minCheckOut) {
+      setDateNotice('Check-Out तारीख किमान Check-In नंतरची (१ रात्र) असावी.');
       setCheckOut(minCheckOut);
+      setTimeout(() => setDateNotice(''), 4500);
       return;
     }
     setCheckOut(val);
@@ -266,6 +275,13 @@ Kindly confirm room availability and booking details.`;
               />
             </div>
           </div>
+
+          {dateNotice && (
+            <div className="p-2.5 rounded-xl bg-[#d4af37]/15 border border-[#d4af37]/40 text-[#143224] text-xs font-semibold flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-[#856d49] shrink-0" />
+              <span>{dateNotice}</span>
+            </div>
+          )}
 
           {/* Room Selection & Guests */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

@@ -33,6 +33,7 @@ export const BookingSection: React.FC<BookingSectionProps> = ({ initialValues })
   const [selectedRoomId, setSelectedRoomId] = useState(initialValues?.roomType || 'deluxe-ac-room');
   const [mealPreference, setMealPreference] = useState('both');
   const [specialNotes, setSpecialNotes] = useState('');
+  const [dateNotice, setDateNotice] = useState('');
 
   useEffect(() => {
     if (initialValues?.checkIn) setCheckIn(clampCheckInDate(initialValues.checkIn));
@@ -53,10 +54,15 @@ export const BookingSection: React.FC<BookingSectionProps> = ({ initialValues })
       setCheckIn(today);
       return;
     }
-    const validCheckIn = val < today ? today : val;
-    setCheckIn(validCheckIn);
+    if (val < today) {
+      setDateNotice('आजच्या आधीची तारीख लॉक आहे. आपोआप आजची तारीख निवडली आहे.');
+      setCheckIn(today);
+      setTimeout(() => setDateNotice(''), 4500);
+      return;
+    }
+    setCheckIn(val);
 
-    const minCheckOut = getNextDay(validCheckIn, 1);
+    const minCheckOut = getNextDay(val, 1);
     if (!checkOut || checkOut < minCheckOut) {
       setCheckOut(minCheckOut);
     }
@@ -65,7 +71,9 @@ export const BookingSection: React.FC<BookingSectionProps> = ({ initialValues })
   const handleCheckOutChange = (val: string) => {
     const minCheckOut = getNextDay(checkIn || today, 1);
     if (!val || val < minCheckOut) {
+      setDateNotice('Check-Out तारीख किमान Check-In नंतरची (१ रात्र) असावी.');
       setCheckOut(minCheckOut);
+      setTimeout(() => setDateNotice(''), 4500);
       return;
     }
     setCheckOut(val);
@@ -220,6 +228,12 @@ Kindly confirm room availability and payment details.`;
                   />
                 </div>
               </div>
+
+              {dateNotice && (
+                <div className="p-2.5 rounded-xl bg-[#d4af37]/15 border border-[#d4af37]/40 text-[#143224] text-xs font-semibold flex items-center gap-2">
+                  <span>{dateNotice}</span>
+                </div>
+              )}
 
               {/* Room Preference & Guests */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

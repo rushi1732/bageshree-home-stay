@@ -27,6 +27,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreRooms, onExploreDining, onB
   const today = getLocalToday();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [dateNotice, setDateNotice] = useState('');
 
   // Quick search bar state with today & tomorrow defaults
   const [checkIn, setCheckIn] = useState(() => getLocalToday());
@@ -56,11 +57,16 @@ export const Hero: React.FC<HeroProps> = ({ onExploreRooms, onExploreDining, onB
       return;
     }
     // Block any past date selection or typing
-    const validCheckIn = val < today ? today : val;
-    setCheckIn(validCheckIn);
+    if (val < today) {
+      setDateNotice('आजच्या आधीची तारीख लॉक आहे. आपोआप आजची चालू तारीख निवडली आहे.');
+      setCheckIn(today);
+      setTimeout(() => setDateNotice(''), 4500);
+      return;
+    }
+    setCheckIn(val);
 
     // Check-out must be at least 1 day after check-in
-    const minCheckOut = getNextDay(validCheckIn, 1);
+    const minCheckOut = getNextDay(val, 1);
     if (!checkOut || checkOut < minCheckOut) {
       setCheckOut(minCheckOut);
     }
@@ -69,7 +75,9 @@ export const Hero: React.FC<HeroProps> = ({ onExploreRooms, onExploreDining, onB
   const handleCheckOutChange = (val: string) => {
     const minCheckOut = getNextDay(checkIn || today, 1);
     if (!val || val < minCheckOut) {
+      setDateNotice('Check-Out तारीख किमान Check-In नंतरची (१ रात्र) असावी.');
       setCheckOut(minCheckOut);
+      setTimeout(() => setDateNotice(''), 4500);
       return;
     }
     setCheckOut(val);
@@ -300,6 +308,13 @@ export const Hero: React.FC<HeroProps> = ({ onExploreRooms, onExploreDining, onB
               <span>Check Availability</span>
             </button>
           </div>
+
+          {dateNotice && (
+            <div className="sm:col-span-2 lg:col-span-5 p-2.5 rounded-xl bg-[#d4af37]/15 border border-[#d4af37]/40 text-[#143224] text-xs font-semibold flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-[#856d49] shrink-0" />
+              <span>{dateNotice}</span>
+            </div>
+          )}
         </form>
       </div>
 
