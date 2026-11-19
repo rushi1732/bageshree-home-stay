@@ -13,6 +13,9 @@ export const SoundscapeToggle: React.FC = () => {
       if (!AudioCtx) return;
       
       const ctx = new AudioCtx();
+      if (ctx.state === 'suspended') {
+        ctx.resume();
+      }
       audioCtxRef.current = ctx;
 
       const masterGain = ctx.createGain();

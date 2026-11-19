@@ -23,11 +23,12 @@ interface BookingSectionProps {
 }
 
 export const BookingSection: React.FC<BookingSectionProps> = ({ initialValues }) => {
+  const today = new Date().toISOString().split('T')[0];
   const [fullName, setFullName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [checkIn, setCheckIn] = useState(initialValues?.checkIn || '');
   const [checkOut, setCheckOut] = useState(initialValues?.checkOut || '');
-  const [guests, setGuests] = useState(initialValues?.guests || '2');
+  const [guests, setGuests] = useState(initialValues?.guests || '2 Adults (Couple)');
   const [selectedRoomId, setSelectedRoomId] = useState(initialValues?.roomType || 'deluxe-ac-room');
   const [mealPreference, setMealPreference] = useState('both');
   const [specialNotes, setSpecialNotes] = useState('');
@@ -35,7 +36,14 @@ export const BookingSection: React.FC<BookingSectionProps> = ({ initialValues })
   useEffect(() => {
     if (initialValues?.checkIn) setCheckIn(initialValues.checkIn);
     if (initialValues?.checkOut) setCheckOut(initialValues.checkOut);
-    if (initialValues?.guests) setGuests(initialValues.guests);
+    if (initialValues?.guests) {
+      if (initialValues.guests === '1') setGuests('1 Adult (Solo)');
+      else if (initialValues.guests === '2') setGuests('2 Adults (Couple)');
+      else if (initialValues.guests === '3') setGuests('3 Adults (Small Group)');
+      else if (initialValues.guests === '4') setGuests('4 Adults (Family)');
+      else if (initialValues.guests === '5' || initialValues.guests === '6+') setGuests('5+ Adults (Large Family)');
+      else setGuests(initialValues.guests);
+    }
     if (initialValues?.roomType) setSelectedRoomId(initialValues.roomType);
   }, [initialValues]);
 
@@ -160,8 +168,15 @@ Kindly confirm room availability and payment details.`;
                   <input
                     type="date"
                     required
+                    min={today}
                     value={checkIn}
-                    onChange={(e) => setCheckIn(e.target.value)}
+                    onChange={(e) => {
+                      const newCheckIn = e.target.value;
+                      setCheckIn(newCheckIn);
+                      if (checkOut && newCheckIn > checkOut) {
+                        setCheckOut(newCheckIn);
+                      }
+                    }}
                     className="w-full px-4 py-3 rounded-xl border border-[#d6c7b0] bg-white text-sm font-sans tabular-nums text-[#222] focus:outline-none focus:ring-2 focus:ring-[#1b4332]"
                   />
                 </div>
@@ -174,6 +189,7 @@ Kindly confirm room availability and payment details.`;
                   <input
                     type="date"
                     required
+                    min={checkIn || today}
                     value={checkOut}
                     onChange={(e) => setCheckOut(e.target.value)}
                     className="w-full px-4 py-3 rounded-xl border border-[#d6c7b0] bg-white text-sm font-sans tabular-nums text-[#222] focus:outline-none focus:ring-2 focus:ring-[#1b4332]"
@@ -211,12 +227,11 @@ Kindly confirm room availability and payment details.`;
                     onChange={(e) => setGuests(e.target.value)}
                     className="w-full px-4 py-3 rounded-xl border border-[#d6c7b0] bg-white text-sm text-[#222] focus:outline-none focus:ring-2 focus:ring-[#1b4332]"
                   >
-                    <option value="1">1 Guest</option>
-                    <option value="2">2 Guests (Couple)</option>
-                    <option value="3">3 Guests</option>
-                    <option value="4">4 Guests (Family)</option>
-                    <option value="5">5 Guests</option>
-                    <option value="6+">6+ Guests (Group)</option>
+                    <option value="1 Adult (Solo)">1 Adult (Solo)</option>
+                    <option value="2 Adults (Couple)">2 Adults (Couple)</option>
+                    <option value="3 Adults (Small Group)">3 Adults (Small Group)</option>
+                    <option value="4 Adults (Family)">4 Adults (Family)</option>
+                    <option value="5+ Adults (Large Family)">5+ Adults (Large Family)</option>
                   </select>
                 </div>
               </div>

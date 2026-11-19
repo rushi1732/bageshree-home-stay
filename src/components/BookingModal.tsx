@@ -29,6 +29,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   onClose,
   initialValues,
 }) => {
+  const today = new Date().toISOString().split('T')[0];
   const [fullName, setFullName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [checkIn, setCheckIn] = useState(initialValues.checkIn || '');
@@ -209,8 +210,15 @@ Kindly confirm room availability and booking details.`;
               <input
                 type="date"
                 required
+                min={today}
                 value={checkIn}
-                onChange={(e) => setCheckIn(e.target.value)}
+                onChange={(e) => {
+                  const newCheckIn = e.target.value;
+                  setCheckIn(newCheckIn);
+                  if (checkOut && newCheckIn > checkOut) {
+                    setCheckOut(newCheckIn);
+                  }
+                }}
                 className="w-full px-4 py-2.5 rounded-xl border border-[#d6c7b0] bg-white text-sm font-sans tabular-nums text-[#222] focus:outline-none focus:ring-2 focus:ring-[#1b4332]"
               />
             </div>
@@ -223,6 +231,7 @@ Kindly confirm room availability and booking details.`;
               <input
                 type="date"
                 required
+                min={checkIn || today}
                 value={checkOut}
                 onChange={(e) => setCheckOut(e.target.value)}
                 className="w-full px-4 py-2.5 rounded-xl border border-[#d6c7b0] bg-white text-sm font-sans tabular-nums text-[#222] focus:outline-none focus:ring-2 focus:ring-[#1b4332]"

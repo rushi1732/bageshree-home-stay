@@ -13,7 +13,7 @@ import {
 import { GALLERY_ITEMS, type GalleryItem } from '../data/homestayData';
 
 interface GalleryProps {
-  onOpenLightbox: (item: GalleryItem, index: number) => void;
+  onOpenLightbox: (item: GalleryItem) => void;
 }
 
 export const Gallery: React.FC<GalleryProps> = ({ onOpenLightbox }) => {
@@ -73,10 +73,10 @@ export const Gallery: React.FC<GalleryProps> = ({ onOpenLightbox }) => {
 
         {/* Masonry / Photo Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredItems.map((item, index) => (
+          {filteredItems.map((item) => (
             <div
               key={item.id}
-              onClick={() => onOpenLightbox(item, index)}
+              onClick={() => onOpenLightbox(item)}
               className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 bg-[#e4dacb] cursor-pointer aspect-[4/3] border border-[#d9ccb6]"
             >
               <img

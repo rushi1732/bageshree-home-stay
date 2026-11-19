@@ -23,6 +23,7 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onExploreRooms, onExploreDining, onBookNow }) => {
+  const today = new Date().toISOString().split('T')[0];
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -191,8 +192,15 @@ export const Hero: React.FC<HeroProps> = ({ onExploreRooms, onExploreDining, onB
             </label>
             <input
               type="date"
+              min={today}
               value={checkIn}
-              onChange={(e) => setCheckIn(e.target.value)}
+              onChange={(e) => {
+                const newCheckIn = e.target.value;
+                setCheckIn(newCheckIn);
+                if (checkOut && newCheckIn > checkOut) {
+                  setCheckOut(newCheckIn);
+                }
+              }}
               className="w-full px-3 py-2.5 rounded-lg border border-[#d6c7b0] bg-white text-xs font-sans tabular-nums text-[#222] focus:outline-none focus:ring-2 focus:ring-[#1b4332]"
             />
           </div>
@@ -205,6 +213,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreRooms, onExploreDining, onB
             </label>
             <input
               type="date"
+              min={checkIn || today}
               value={checkOut}
               onChange={(e) => setCheckOut(e.target.value)}
               className="w-full px-3 py-2.5 rounded-lg border border-[#d6c7b0] bg-white text-xs font-sans tabular-nums text-[#222] focus:outline-none focus:ring-2 focus:ring-[#1b4332]"

@@ -55,10 +55,10 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
             e.stopPropagation();
             onPrev();
           }}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-50 p-3 rounded-full bg-white/10 hover:bg-white/25 text-white transition-colors hidden sm:flex items-center justify-center"
+          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-50 p-2.5 sm:p-3 rounded-full bg-black/60 sm:bg-white/10 hover:bg-white/25 text-white transition-colors flex items-center justify-center shadow-lg"
           aria-label="Previous Image"
         >
-          <ChevronLeft className="w-6 h-6" />
+          <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
       )}
 
@@ -69,10 +69,10 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
             e.stopPropagation();
             onNext();
           }}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-50 p-3 rounded-full bg-white/10 hover:bg-white/25 text-white transition-colors hidden sm:flex items-center justify-center"
+          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-50 p-2.5 sm:p-3 rounded-full bg-black/60 sm:bg-white/10 hover:bg-white/25 text-white transition-colors flex items-center justify-center shadow-lg"
           aria-label="Next Image"
         >
-          <ChevronRight className="w-6 h-6" />
+          <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
       )}
 

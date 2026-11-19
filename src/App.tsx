@@ -107,13 +107,14 @@ export function App() {
     }
   };
 
-  const handleOpenLightbox = (item: GalleryItem, index: number) => {
+  const handleOpenLightbox = (item: GalleryItem) => {
+    const trueIndex = GALLERY_ITEMS.findIndex((g) => g.id === item.id);
     setLightbox({
       isOpen: true,
       imageUrl: item.imageUrl,
       title: item.title,
       caption: item.caption,
-      currentIndex: index,
+      currentIndex: trueIndex >= 0 ? trueIndex : 0,
     });
   };
 
